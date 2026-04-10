@@ -1,0 +1,205 @@
+.label {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.inputPanel {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.textarea {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  resize: none;
+  width: 100%;
+  min-height: 140px;
+  line-height: 1.6;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--color-error);
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.errorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-error);
+}
+
+/* Diff */
+.diffSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.diffBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.diffHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.diffTitle {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badges {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.badge {
+  padding: 3px 8px;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.badgeGreen {
+  background: #00ff8820;
+  color: var(--accent);
+}
+
+.badgeRed {
+  background: #ff444420;
+  color: var(--color-error);
+}
+
+.badgeOrange {
+  background: #ff880020;
+  color: var(--color-warning);
+}
+
+.diffRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.diffRow:last-child {
+  border-bottom: none;
+}
+
+.diffSymbol {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.diffSymbol[data-color='green'] {
+  color: var(--accent);
+}
+
+.diffSymbol[data-color='red'] {
+  color: var(--color-error);
+}
+
+.diffSymbol[data-color='orange'] {
+  color: var(--color-warning);
+}
+
+.diffKey {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.diffOld {
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.diffArrow {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.diffNew {
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.noDiff {
+  padding: 20px 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Status bar */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.statusText {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusRight {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
