@@ -43,23 +43,6 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
           <span className={styles.logoText}>DEV-TOOLSBOX</span>
         </div>
 
-        {/* System Info */}
-        <div className={styles.sysInfo}>
-          <span className={styles.sysLabel}>// SYSTEM_STATUS</span>
-          <div className={styles.sysRow}>
-            <span className={styles.sysKey}>PLATFORM:</span>
-            <span className={styles.sysValueAccent}>TAURI</span>
-          </div>
-          <div className={styles.sysRow}>
-            <span className={styles.sysKey}>RUNTIME:</span>
-            <span className={styles.sysValue}>LOCAL</span>
-          </div>
-          <div className={styles.sysRow}>
-            <span className={styles.sysKey}>VERSION:</span>
-            <span className={styles.sysValue}>v2.0.0</span>
-          </div>
-        </div>
-
         {/* Navigation */}
         <nav className={styles.nav}>
           {TOOLS.map((tool) => {
@@ -82,10 +65,11 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
 
       <div className={styles.bottom}>
         <div className={styles.localMode}>
-          <span className={styles.sysLabel}>// LOCAL_MODE</span>
+          <span className={styles.sectionLabel}>// LOCAL_MODE</span>
           <p className={styles.localDesc}>
             No external backend. All data stays on your machine.
           </p>
+          <span className={styles.version}>v2.0.0</span>
         </div>
       </div>
     </aside>

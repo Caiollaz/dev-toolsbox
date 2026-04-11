@@ -45,49 +45,15 @@
   letter-spacing: 1px;
 }
 
-/* System Info */
-.sysInfo {
-  background: var(--bg-card);
-  padding: var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  border-top: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
+/* Navigation */
 
-.sysLabel {
+.sectionLabel {
   font-size: 9px;
   font-weight: 500;
   color: var(--accent);
   letter-spacing: 1px;
 }
 
-.sysRow {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sysKey {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.sysValue {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.sysValueAccent {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-/* Navigation */
 .nav {
   display: flex;
   flex-direction: column;
@@ -162,4 +128,10 @@
   font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+.version {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--text-muted);
 }
