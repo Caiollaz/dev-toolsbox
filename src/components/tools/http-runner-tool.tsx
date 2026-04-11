@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { Send, Trash2, Plus, Copy, Loader2 } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { Send, Trash2, Plus, Copy, Loader2, Braces, AlertTriangle } from 'lucide-react';
 import {
   sendRequest,
   buildCurlCommand,
@@ -7,6 +7,7 @@ import {
   createDefaultConfig,
   createEmptyPair,
   tryFormatJson,
+  validateJson,
   getStatusColor,
   formatResponseSize,
   formatResponseTime,
@@ -37,6 +38,19 @@ export function HttpRunnerTool() {
   const abortControllerRef = useRef<AbortController | null>(null);
   const { copy, copied } = useClipboard();
 
+  // JSON body validation
+  const jsonError = useMemo(() => {
+    if (config.bodyType !== 'json') return null;
+    return validateJson(config.body);
+  }, [config.body, config.bodyType]);
+
+  const hasBodyError = jsonError !== null && config.body.trim() !== '';
+
+  const canSendBody = config.method !== 'GET' && config.method !== 'HEAD';
+
+  // Block send when body type is JSON and JSON is invalid (for methods that send body)
+  const sendBlocked = canSendBody && hasBodyError;
+
   useEffect(() => {
     isTauriEnvironment().then(setIsTauri);
   }, []);
@@ -51,6 +65,8 @@ export function HttpRunnerTool() {
       abortControllerRef.current?.abort();
       return;
     }
+
+    if (sendBlocked) return;
 
     setError(null);
     setResponse(null);
@@ -81,6 +97,14 @@ export function HttpRunnerTool() {
 
   const handleCopyBody = () => {
     if (response?.body) copy(response.body);
+  };
+
+  const handleFormatJson = () => {
+    if (!config.body.trim() || jsonError) return;
+    const formatted = tryFormatJson(config.body);
+    if (formatted !== config.body) {
+      updateConfig('body', formatted);
+    }
   };
 
   // ── Key-Value Pair helpers ─────────────────────────
@@ -234,13 +258,35 @@ export function HttpRunnerTool() {
               </div>
             </div>
             {config.bodyType === 'json' && (
-              <textarea
-                value={config.body}
-                onChange={(e) => updateConfig('body', e.target.value)}
-                placeholder='{"key": "value"}'
-                className={styles.bodyTextarea}
-                rows={8}
-              />
+              <>
+                <div className={styles.bodyToolbar}>
+                  <button
+                    className={styles.bodyFormatBtn}
+                    onClick={handleFormatJson}
+                    disabled={!config.body.trim() || hasBodyError}
+                    title="Format JSON"
+                  >
+                    <Braces size={12} />
+                    <span>FORMAT</span>
+                  </button>
+                  {hasBodyError && (
+                    <div className={styles.bodyJsonError}>
+                      <AlertTriangle size={12} />
+                      <span>{jsonError}</span>
+                    </div>
+                  )}
+                  {config.body.trim() && !hasBodyError && (
+                    <span className={styles.bodyJsonValid}>VALID JSON</span>
+                  )}
+                </div>
+                <textarea
+                  value={config.body}
+                  onChange={(e) => updateConfig('body', e.target.value)}
+                  placeholder='{"key": "value"}'
+                  className={`${styles.bodyTextarea} ${hasBodyError ? styles.bodyTextareaError : ''}`}
+                  rows={8}
+                />
+              </>
             )}
             {config.bodyType === 'raw' && (
               <textarea
@@ -343,12 +389,13 @@ export function HttpRunnerTool() {
           onChange={(e) => updateConfig('url', e.target.value)}
           placeholder="https://api.example.com/endpoint"
           onKeyDown={(e) => {
-            if (e.key === 'Enter') handleSend();
+            if (e.key === 'Enter' && !sendBlocked) handleSend();
           }}
         />
         <button
-          className={`${styles.sendBtn} ${loading ? styles.sendBtnLoading : ''}`}
+          className={`${styles.sendBtn} ${loading ? styles.sendBtnLoading : ''} ${sendBlocked ? styles.sendBtnDisabled : ''}`}
           onClick={handleSend}
+          disabled={sendBlocked}
         >
           {loading ? (
             <>

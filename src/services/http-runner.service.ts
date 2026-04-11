@@ -257,7 +257,7 @@ export async function sendRequest(
   const response = await http.fetch(fullUrl, {
     method: config.method,
     headers,
-    body: body ? { type: 'Text', payload: body } : undefined,
+    body: body || undefined,
     connectTimeout: config.timeout * 1000,
     signal: abortSignal,
   });
@@ -350,5 +350,18 @@ export function tryFormatJson(text: string): string {
     return JSON.stringify(parsed, null, 2);
   } catch {
     return text;
+  }
+}
+
+export function validateJson(text: string): string | null {
+  if (!text.trim()) return null;
+  try {
+    JSON.parse(text);
+    return null;
+  } catch (e) {
+    if (e instanceof SyntaxError) {
+      return e.message.replace(/^JSON\.parse:\s*/, '');
+    }
+    return 'Invalid JSON';
   }
 }
