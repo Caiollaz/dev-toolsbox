@@ -312,7 +312,7 @@ export function HttpRunnerTool() {
         </div>
         <h3 className={styles.desktopOnlyTitle}>DESKTOP ONLY FEATURE</h3>
         <p className={styles.desktopOnlyDesc}>
-          HTTP Runner requires the dev-toolsbox desktop app to make CORS-free HTTP requests.
+          HTTP Runner requires the DEXT desktop app to make CORS-free HTTP requests.
           Download the app to use this tool.
         </p>
       </div>

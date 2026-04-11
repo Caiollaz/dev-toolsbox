@@ -2,7 +2,7 @@
 
 ## Overview
 
-dev-toolsbox is a local-first developer toolbox built with **React 18 + TypeScript + Vite**. It is designed to run as a **Tauri v2** desktop app but works perfectly in the browser with localStorage fallback.
+DEXT is a local-first developer toolbox built with **React 18 + TypeScript + Vite**. It is designed to run as a **Tauri v2** desktop app but works perfectly in the browser with localStorage fallback.
 
 The app ships 10 tools: JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff, Hash Generator, URL Encoder, Timestamp Converter, Regex Tester, JSON Formatter, and HTTP Runner. All processing happens client-side — zero network requests, zero backend. The HTTP Runner is a desktop-only feature that uses Tauri's native HTTP plugin for CORS-free requests.
 
@@ -21,7 +21,7 @@ The app ships 10 tools: JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSO
 ## Project Structure
 
 ```
-dev-toolsbox/
+dext/
 ├── index.html                    # Vite entry HTML
 ├── package.json
 ├── tsconfig.json
@@ -135,7 +135,7 @@ App
 
 `storage.service.ts` provides a unified API:
 
-- **Tauri mode**: Reads/writes JSON to `{appDataDir}/dev-toolsbox-history.json` using `@tauri-apps/plugin-fs`
+- **Tauri mode**: Reads/writes JSON to `{appDataDir}/dext-history.json` using `@tauri-apps/plugin-fs`
 - **Browser mode**: Falls back to `localStorage` with the same key
 - Maximum 100 history entries, LIFO order
 - Detection uses `Function('m', 'return import(m)')` pattern to avoid TypeScript errors without installing Tauri packages

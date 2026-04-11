@@ -1,6 +1,6 @@
 import type { HistoryEntry } from '../types';
 
-const STORAGE_FILE = 'dev-toolsbox-history.json';
+const STORAGE_FILE = 'dext-history.json';
 
 /**
  * Storage service using Tauri fs API for local persistence.

@@ -1,8 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/niconiahi/schemas/master/tauri-v2.json",
-  "productName": "dev-toolsbox",
+  "productName": "dext",
   "version": "2.0.1",
-  "identifier": "com.devtoolsbox.app",
+  "identifier": "com.dext.app",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "withGlobalTauri": false,
     "windows": [
       {
-        "title": "dev-toolsbox",
+        "title": "DEXT",
         "width": 1440,
         "height": 900,
         "minWidth": 1024,
@@ -55,6 +55,6 @@
     "shortDescription": "Local-first developer tools",
     "longDescription": "A collection of essential local tools for developers. JWT Decoder, Base64, UUID Generator, JSON Diff — all offline, zero backend, blazing fast.",
     "category": "DeveloperTool",
-    "copyright": "Copyright 2026 dev-toolsbox"
+    "copyright": "Copyright 2026 DEXT"
   }
 }

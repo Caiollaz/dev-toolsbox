@@ -1,6 +1,6 @@
 {
   "identifier": "default",
-  "description": "Default capabilities for dev-toolsbox",
+  "description": "Default capabilities for dext",
   "windows": ["main"],
   "permissions": [
     "core:default",

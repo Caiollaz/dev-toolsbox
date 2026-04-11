@@ -131,7 +131,7 @@ Padding: 12px 20px, gap: 12px (icon 16px + label).
 ### Sidebar
 
 - Width: 240px, background: `--bg-sidebar`
-- Top: Logo (green 32x32 mark + "DEV-TOOLSBOX")
+- Top: Logo (green 32x32 mark + "DEXT")
 - System Info card: `--bg-card`, key-value rows
 - Navigation: vertical list of 10 Nav Items
 - Bottom: `// LOCAL_MODE` with description
@@ -161,7 +161,7 @@ Common action icons:
 
 ## Pencil Design File (app.pen)
 
-The design system is also defined in `app.pen` as reusable Pencil components under the frame `vxiR7` ("Design System -- dev-toolsbox").
+The design system is also defined in `app.pen` as reusable Pencil components under the frame `vxiR7` ("Design System -- DEXT").
 
 ### Screen Frames
 

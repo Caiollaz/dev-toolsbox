@@ -1,8 +1,8 @@
-# AGENTS.md — AI Context for dev-toolsbox
+# AGENTS.md — AI Context for DEXT
 
 ## What is this project?
 
-**dev-toolsbox** is a local-first developer toolbox app — a collection of essential offline tools for developers. Built with React 18 + TypeScript + Vite, designed to run as a Tauri v2 desktop app (but works in browser too).
+**DEXT** is a local-first developer toolbox app — a collection of essential offline tools for developers. Built with React 18 + TypeScript + Vite, designed to run as a Tauri v2 desktop app (but works in browser too).
 
 Current tools (10): JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff, Hash Generator, URL Encoder, Timestamp Converter, Regex Tester, JSON Formatter, HTTP Runner.
 
@@ -20,7 +20,7 @@ Current tools (10): JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Di
 | Build | `npm run build` → `tsc && vite build` |
 | Dev | `npm run dev` → `vite` on port 1420 |
 | Design file | `app.pen` (Pencil design tool format, 12 frames) |
-| GitHub | `https://github.com/Caiollaz/dev-toolsbox` |
+| GitHub | `https://github.com/Caiollaz/dext` |
 
 ## Critical Conventions
 
@@ -299,4 +299,4 @@ Triggered by pushing a git tag (`v*`) or manual workflow dispatch. The workflow 
 
 ### Landing Page
 
-Static HTML/CSS in `docs/` served via GitHub Pages at `https://caiollaz.github.io/dev-toolsbox/`. Features all 10 tools, download links pointing to GitHub Releases.
+Static HTML/CSS in `docs/` served via GitHub Pages at `https://caiollaz.github.io/dext/`. Features all 10 tools, download links pointing to GitHub Releases.

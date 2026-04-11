@@ -40,7 +40,7 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
         {/* Logo */}
         <div className={styles.logo}>
           <div className={styles.logoMark}>D</div>
-          <span className={styles.logoText}>DEV-TOOLSBOX</span>
+          <span className={styles.logoText}>DEXT</span>
         </div>
 
         {/* Navigation */}

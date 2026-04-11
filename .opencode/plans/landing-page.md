@@ -1,4 +1,4 @@
-# Landing Page Plan — dev-toolsbox
+# Landing Page Plan — dext
 
 ## Goal
 Create a static landing page in `website/` folder using pure HTML + CSS, following the exact design from `app.pen` frame `nf3al`. Ready for GitHub Pages deployment.
@@ -9,7 +9,7 @@ Create a static landing page in `website/` folder using pure HTML + CSS, followi
 Single HTML file with all 6 sections:
 
 **Section 1 — Navbar**
-- Logo mark (green square with "D") + "DEV-TOOLSBOX" text
+- Logo mark (green square with "D") + "DEXT" text
 - Nav links: FEATURES, TOOLS, DOWNLOAD, GITHUB (anchor scroll + external)
 - Download CTA button (green) + "v1.0.0" version text
 - Mobile: hamburger menu toggle
@@ -33,7 +33,7 @@ Single HTML file with all 6 sections:
 - Each card: icon box (48x48, green tint) + title + description
 
 **Section 4 — Why** (`#why`)
-- Section label: "// WHY DEV-TOOLSBOX"
+- Section label: "// WHY DEXT"
 - Title: "Built different."
 - 3 columns:
   - Local First (shield icon)
@@ -106,8 +106,8 @@ Simple SVG favicon: green (#00FF88) square with white "D" letter in JetBrains Mo
 - **GitHub Pages**: Works with `gh-pages` branch or `/docs` folder config
 
 ## External Links
-- Download buttons → `https://github.com/Caiollaz/dev-toolsbox/releases`
-- GitHub button → `https://github.com/Caiollaz/dev-toolsbox`
+- Download buttons → `https://github.com/Caiollaz/dext/releases`
+- GitHub button → `https://github.com/Caiollaz/dext`
 - Footer links → respective GitHub URLs
 
 ## Verification

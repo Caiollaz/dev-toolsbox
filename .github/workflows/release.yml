@@ -41,9 +41,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: dev-toolsbox ${{ steps.tag.outputs.tag }}
+          release_name: DEXT ${{ steps.tag.outputs.tag }}
           body: |
-            ## dev-toolsbox ${{ steps.tag.outputs.tag }}
+            ## DEXT ${{ steps.tag.outputs.tag }}
 
             Local-first developer tools — 10 essential tools, all offline, zero backend.
 

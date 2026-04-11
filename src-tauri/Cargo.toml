@@ -1,12 +1,12 @@
 [package]
-name = "dev-toolsbox"
+name = "dext"
 version = "2.0.1"
 description = "A collection of essential local developer tools"
-authors = ["dev-toolsbox"]
+authors = ["dext"]
 edition = "2021"
 
 [lib]
-name = "dev_toolsbox_lib"
+name = "dext_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

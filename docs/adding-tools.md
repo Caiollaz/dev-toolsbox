@@ -1,6 +1,6 @@
 # Adding a New Tool
 
-Step-by-step guide to add a new tool to dev-toolsbox.
+Step-by-step guide to add a new tool to DEXT.
 
 ## 1. Register the tool type
 
