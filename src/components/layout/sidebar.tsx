@@ -69,7 +69,7 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
           <p className={styles.localDesc}>
             No external backend. All data stays on your machine.
           </p>
-          <span className={styles.version}>v2.0.0</span>
+          <span className={styles.version}>v2.0.1</span>
         </div>
       </div>
     </aside>

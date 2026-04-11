@@ -213,8 +213,8 @@ function getStatusText(status: number): string {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function getTauriHttpApi(): Promise<any | null> {
   try {
-    const moduleName = '@tauri-apps/plugin-http';
-    const http = await (Function('m', 'return import(m)')(moduleName));
+    // Regular dynamic import — Vite bundles this as a lazy chunk
+    const http = await import('@tauri-apps/plugin-http');
     return http;
   } catch {
     return null;
@@ -226,8 +226,9 @@ let _isTauri = false;
 
 export async function isTauriEnvironment(): Promise<boolean> {
   if (_isTauriChecked) return _isTauri;
-  const http = await getTauriHttpApi();
-  _isTauri = http !== null;
+  // Detect Tauri v2 runtime via internals injected by the webview
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _isTauri = !!(window as any).__TAURI_INTERNALS__;
   _isTauriChecked = true;
   return _isTauri;
 }
