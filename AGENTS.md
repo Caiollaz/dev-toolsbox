@@ -4,12 +4,13 @@
 
 **dev-toolsbox** is a local-first developer toolbox app — a collection of essential offline tools for developers. Built with React 18 + TypeScript + Vite, designed to run as a Tauri v2 desktop app (but works in browser too).
 
-Current tools: JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff.
+Current tools (10): JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff, Hash Generator, URL Encoder, Timestamp Converter, Regex Tester, JSON Formatter, HTTP Runner.
 
 ## Quick Reference
 
 | Aspect | Detail |
 |--------|--------|
+| Version | 2.0.0 |
 | Framework | React 18 + TypeScript 5 (strict) |
 | Bundler | Vite 6 |
 | Desktop | Tauri v2 (optional, graceful fallback to browser) |
@@ -18,7 +19,8 @@ Current tools: JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff.
 | Fonts | JetBrains Mono (UI/mono), Space Grotesk (headings) |
 | Build | `npm run build` → `tsc && vite build` |
 | Dev | `npm run dev` → `vite` on port 1420 |
-| Design file | `app.pen` (Pencil design tool format) |
+| Design file | `app.pen` (Pencil design tool format, 12 frames) |
+| GitHub | `https://github.com/Caiollaz/dev-toolsbox` |
 
 ## Critical Conventions
 
@@ -27,15 +29,12 @@ Current tools: JWT Decoder, Base64 Encoder/Decoder, UUID Generator, JSON Diff.
 Every file in this project uses **kebab-case**. No exceptions.
 
 ```
-✅ base64-tool.tsx
-✅ jwt-decoder-tool.tsx
-✅ use-clipboard.ts
-✅ base64.service.ts
-✅ action-button.module.css
-
-❌ Base64Tool.tsx
-❌ jwtDecoderTool.tsx
-❌ useClipboard.ts
+base64-tool.tsx
+jwt-decoder-tool.tsx
+use-clipboard.ts
+base64.service.ts
+action-button.module.css
+http-runner-tool.tsx
 ```
 
 ### Project Structure
@@ -46,7 +45,7 @@ src/
 ├── main.tsx                         # Entry point
 ├── vite-env.d.ts                    # Type declarations
 ├── styles/global.css                # Design tokens + CSS reset
-├── types/index.ts                   # ToolType union, TOOLS registry
+├── types/index.ts                   # ToolType union (10 tools), TOOLS registry
 ├── hooks/                           # Custom React hooks
 │   ├── use-clipboard.ts
 │   └── use-history.ts
@@ -55,22 +54,34 @@ src/
 │   ├── jwt.service.ts
 │   ├── uuid.service.ts
 │   ├── json-diff.service.ts
+│   ├── hash.service.ts
+│   ├── url-encoder.service.ts
+│   ├── timestamp.service.ts
+│   ├── regex.service.ts
+│   ├── json-formatter.service.ts
+│   ├── http-runner.service.ts       # Uses Tauri HTTP plugin (desktop only)
 │   └── storage.service.ts
 └── components/
     ├── layout/                      # App shell (sidebar + content)
-    │   ├── layout.tsx
-    │   ├── sidebar.tsx
-    │   └── tool-container.tsx
+    │   ├── layout.tsx               # switch/case for 10 tools
+    │   ├── sidebar.tsx              # ICON_MAP with 10 Lucide icons
+    │   └── tool-container.tsx       # Auto-generates // TOOL_XX labels
     ├── shared/                      # Reusable UI components
     │   ├── input-area.tsx
     │   ├── output-area.tsx
     │   ├── action-button.tsx
     │   └── copy-button.tsx
-    └── tools/                       # Tool implementations
+    └── tools/                       # Tool implementations (10 tools)
         ├── base64-tool.tsx
         ├── jwt-decoder-tool.tsx
         ├── uuid-generator-tool.tsx
-        └── json-diff-tool.tsx
+        ├── json-diff-tool.tsx
+        ├── hash-generator-tool.tsx
+        ├── url-encoder-tool.tsx
+        ├── timestamp-converter-tool.tsx
+        ├── regex-tester-tool.tsx
+        ├── json-formatter-tool.tsx
+        └── http-runner-tool.tsx
 ```
 
 Each `.tsx` component has a corresponding `.module.css` file (same name).
@@ -82,6 +93,7 @@ Each `.tsx` component has a corresponding `.module.css` file (same name).
 3. **Hooks** → Reusable React hooks: `use-{name}.ts`
 4. **Components** → Split into `layout/`, `shared/`, `tools/`
 5. **Layout** manages `activeTool` state and renders the selected tool via switch/case
+6. **Sidebar** uses `ICON_MAP` to map tool icon names to Lucide components
 
 ### Adding a New Tool
 
@@ -91,7 +103,23 @@ See `docs/adding-tools.md` for the full checklist. Summary:
 2. Create `src/services/{tool}.service.ts` with pure logic
 3. Create `src/components/tools/{tool}.tsx` + `.module.css`
 4. Wire into switch/case in `src/components/layout/layout.tsx`
-5. Run `npm run build` to verify
+5. Add Lucide icon to `ICON_MAP` in `src/components/layout/sidebar.tsx`
+6. Run `npm run build` to verify
+
+## Tools Registry
+
+| # | ID | Label | Icon | Desktop Only |
+|---|-----|-------|------|:---:|
+| 01 | `jwt-decoder` | JWT DECODER | `key-round` | No |
+| 02 | `json-diff` | JSON DIFF | `git-compare` | No |
+| 03 | `base64` | BASE64 | `file-code` | No |
+| 04 | `uuid-generator` | UUID GENERATOR | `hash` | No |
+| 05 | `hash-generator` | HASH GENERATOR | `shield` | No |
+| 06 | `url-encoder` | URL ENCODER | `link` | No |
+| 07 | `timestamp-converter` | TIMESTAMP | `timer` | No |
+| 08 | `regex-tester` | REGEX TESTER | `regex` | No |
+| 09 | `json-formatter` | JSON FORMAT | `braces` | No |
+| 10 | `http-runner` | HTTP RUNNER | `send` | Yes |
 
 ## Design System
 
@@ -122,7 +150,7 @@ All design tokens are defined as CSS custom properties in `src/styles/global.css
 --bg-primary, --bg-sidebar, --bg-card, --bg-surface
 --accent, --accent-dim, --accent-border, --accent-glow
 --text-primary, --text-secondary, --text-muted
---border, --color-warning, --color-error
+--border, --border-light, --color-success, --color-warning, --color-error
 --font-mono, --font-heading
 --spacing-xs through --spacing-4xl
 --sidebar-width
@@ -132,7 +160,9 @@ Always use these variables — never hardcode colors.
 
 ## Design File (app.pen)
 
-The `app.pen` file contains all screen designs and a full design system with reusable components. Key frames:
+The `app.pen` file contains 12 frames: 10 tool screens, 1 landing page, and 1 design system catalog with 43 reusable components.
+
+### Screen Frames
 
 | Frame | ID | Description |
 |-------|----|-------------|
@@ -140,6 +170,12 @@ The `app.pen` file contains all screen designs and a full design system with reu
 | JWT Decoder Screen | `RxEXO` | App screen for JWT tool |
 | UUID Generator Screen | `IcWj0` | App screen for UUID tool |
 | JSON Diff Screen | `6Ig1Z` | App screen for JSON Diff tool |
+| Hash Generator Screen | `hgDbM` | App screen for Hash tool |
+| URL Encoder Screen | `jzKNv` | App screen for URL Encoder tool |
+| Timestamp Converter Screen | `POEnV` | App screen for Timestamp tool |
+| Regex Tester Screen | `ZgawY` | App screen for Regex tool |
+| JSON Formatter Screen | `bQxC5` | App screen for JSON Formatter tool |
+| HTTP Runner Screen | `ea7nu` | App screen for HTTP Runner tool |
 | Landing Page | `nf3al` | Marketing/download page |
 | Design System | `vxiR7` | Reusable components catalog |
 
@@ -183,6 +219,19 @@ The `app.pen` file contains all screen designs and a full design system with reu
 | Sidebar | `ZGSyG` | Full sidebar component |
 | App Shell | `0x2UH` | Sidebar + content layout |
 
+### Typography Components
+
+| Component | ID |
+|-----------|----|
+| Heading XL | `hoOwe` |
+| Heading LG | `RhuJB` |
+| Heading MD | `opaI3` |
+| Heading SM | `TJ9zC` |
+| Body Primary | `iRcoi` |
+| Body Secondary | `MjGJZ` |
+| Body Muted | `f2zKi` |
+| Caption | `NN8dQ` |
+
 ### Design Token Variables (Pencil)
 
 The `app.pen` file has these variables defined:
@@ -197,6 +246,29 @@ $border: #2f2f2f
 $warning: #FF8800       $error: #FF4444
 ```
 
+## Tauri Configuration
+
+### Plugins
+
+| Plugin | Cargo Crate | NPM Package | Usage |
+|--------|-------------|-------------|-------|
+| Shell | `tauri-plugin-shell` | — | Open external links |
+| HTTP | `tauri-plugin-http` | `@tauri-apps/plugin-http` | HTTP Runner (CORS-free requests) |
+
+### Capabilities
+
+Permissions are in `src-tauri/capabilities/default.json`:
+- `core:default` — Core Tauri APIs
+- `shell:allow-open` — Open URLs in browser
+- `http:default`, `http:allow-fetch`, `http:allow-fetch-cancel`, `http:allow-fetch-read-body`, `http:allow-fetch-send` — Full HTTP access to `http://**` and `https://**`
+
+### HTTP Runner (Desktop Only)
+
+- Uses `@tauri-apps/plugin-http` via dynamic import (same pattern as `storage.service.ts`)
+- In browser: shows "Desktop only" fallback message
+- Features: 7 HTTP methods, query params editor, headers editor, auth presets (None/Bearer/Basic), body types (None/JSON/Form/Raw), response tabs (Body/Headers/Cookies), Copy as cURL
+- Security: URL sanitization, configurable timeout, 5MB response size limit, AbortController for cancellation
+
 ## Storage & Persistence
 
 `storage.service.ts` uses dynamic imports to detect Tauri at runtime:
@@ -204,7 +276,7 @@ $warning: #FF8800       $error: #FF4444
 - **Browser/dev mode**: Falls back to `localStorage`
 - The detection uses `Function('m', 'return import(m)')` pattern to avoid TypeScript errors without installing Tauri packages
 
-## Build & Test
+## Build & Release
 
 ```bash
 npm install         # Install dependencies
@@ -214,3 +286,17 @@ npm run preview     # Preview production build
 ```
 
 The build output goes to `dist/`. No tests are configured yet.
+
+### Release Workflow
+
+`.github/workflows/release.yml` builds for 4 targets:
+- Linux x64 (`.deb`, `.AppImage`, `.rpm`)
+- macOS Apple Silicon (`.dmg`)
+- macOS Intel (`.dmg`)
+- Windows x64 (`.exe`, `.msi`)
+
+Triggered by pushing a git tag (`v*`) or manual workflow dispatch. The workflow automatically extracts the version from the tag and syncs `package.json`, `Cargo.toml`, and `tauri.conf.json` before building, so artifact filenames always match the release tag.
+
+### Landing Page
+
+Static HTML/CSS in `docs/` served via GitHub Pages at `https://caiollaz.github.io/dev-toolsbox/`. Features all 10 tools, download links pointing to GitHub Releases.

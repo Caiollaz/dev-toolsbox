@@ -171,7 +171,24 @@ case 'your-tool':
   return <YourTool />;
 ```
 
-## 6. (Optional) Create the Pencil design
+## 6. Add the icon to the sidebar
+
+Edit `src/components/layout/sidebar.tsx`:
+
+```tsx
+// Add to the import from lucide-react:
+import { Wrench } from 'lucide-react';
+
+// Add to the ICON_MAP:
+const ICON_MAP: Record<string, LucideIcon> = {
+  // ... existing icons
+  wrench: Wrench,
+};
+```
+
+The `icon` value in your TOOLS config (step 1) must match a key in `ICON_MAP`.
+
+## 7. (Optional) Create the Pencil design
 
 In `app.pen`, use the App Shell component to create a new screen:
 
@@ -190,6 +207,7 @@ screen=I(document,{type:"ref",ref:"0x2UH"})  // App Shell
 - [ ] Created component: `src/components/tools/your-tool.tsx`
 - [ ] Created CSS module: `src/components/tools/your-tool.module.css`
 - [ ] Wired component in `src/components/layout/layout.tsx` switch/case
+- [ ] Added Lucide icon to `ICON_MAP` in `src/components/layout/sidebar.tsx`
 - [ ] All filenames use **kebab-case**
 - [ ] Build passes: `npm run build`
 

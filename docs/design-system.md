@@ -22,6 +22,8 @@ Dark theme inspired by terminal interfaces and industrial control panels. High c
 | `--text-secondary` | `#6A6A6A` | Secondary text, descriptions |
 | `--text-muted` | `#8A8A8A` | Muted text, hints, metadata |
 | `--border` | `#2F2F2F` | Default border color |
+| `--border-light` | `#3F3F3F` | Lighter border (hover states) |
+| `--color-success` | `#00FF88` | Success states |
 | `--color-warning` | `#FF8800` | Warning states |
 | `--color-error` | `#FF4444` | Error states |
 
@@ -68,7 +70,7 @@ Dark theme inspired by terminal interfaces and industrial control panels. High c
 
 | Variant | Background | Text Color | Border | Usage |
 |---------|-----------|------------|--------|-------|
-| Primary | `--accent` (#00FF88) | `--bg-primary` (#0C0C0C) | none | Main actions (ENCODE, DECODE, GENERATE) |
+| Primary | `--accent` (#00FF88) | `--bg-primary` (#0C0C0C) | none | Main actions (ENCODE, DECODE, GENERATE, SEND) |
 | Secondary | `--bg-card` (#0A0A0A) | `--text-primary` (#FFF) | 1px `--border` | Alternative actions (DECODE, BULK, CLEAR) |
 | Ghost | transparent | `--text-secondary` | none | Tertiary / dismiss actions |
 | Danger | `--color-error` (#FF4444) | `--text-primary` | none | Destructive actions |
@@ -84,6 +86,8 @@ Green uppercase labels used throughout the UI as section identifiers:
 // OUTPUT
 // SYSTEM_STATUS
 // LOCAL_MODE
+// AUTH_TYPE
+// BODY_TYPE
 ```
 
 Pattern: `JetBrains Mono`, 9-10px, weight 500, `--accent` color, letter-spacing 1px.
@@ -94,7 +98,7 @@ Full-width bar at the bottom of each tool:
 - Background: `--bg-card`
 - Border: 1px `--accent-border`
 - Left: glowing dot (6px ellipse, `--accent` with box-shadow `--accent-glow`) + status text
-- Right: tool identifier tag (e.g., `BASE64_UTF8`, `JWT_HS256`)
+- Right: tool identifier tag (e.g., `BASE64_UTF8`, `JWT_HS256`, `HTTP_RUNNER`)
 
 ### Badges
 
@@ -129,21 +133,54 @@ Padding: 12px 20px, gap: 12px (icon 16px + label).
 - Width: 240px, background: `--bg-sidebar`
 - Top: Logo (green 32x32 mark + "DEV-TOOLSBOX")
 - System Info card: `--bg-card`, key-value rows
-- Navigation: vertical list of Nav Items
+- Navigation: vertical list of 10 Nav Items
 - Bottom: `// LOCAL_MODE` with description
 
 ### Icons
 
-Using **Lucide** icon set. Common icons used:
-- `key-round` (JWT), `file-code` (Base64), `hash` (UUID), `git-compare` (JSON Diff)
+Using **Lucide** icon set. Tool icons:
+
+| Tool | Icon |
+|------|------|
+| JWT Decoder | `key-round` |
+| JSON Diff | `git-compare` |
+| Base64 | `file-code` |
+| UUID Generator | `hash` |
+| Hash Generator | `shield` |
+| URL Encoder | `link` |
+| Timestamp Converter | `timer` |
+| Regex Tester | `regex` |
+| JSON Formatter | `braces` |
+| HTTP Runner | `send` |
+
+Common action icons:
 - `lock` / `lock-open` (encode/decode), `search` (decode JWT)
 - `refresh-cw` (generate), `layers` (bulk), `trash-2` (clear/delete)
 - `copy` (copy button), `check` (copied state)
-- `terminal` (logo mark)
+- `plus` (add row), `loader-2` (loading spinner)
 
 ## Pencil Design File (app.pen)
 
-The design system is also defined in `app.pen` as reusable Pencil components under the frame `vxiR7` ("Design System — dev-toolsbox"). Key component IDs:
+The design system is also defined in `app.pen` as reusable Pencil components under the frame `vxiR7` ("Design System -- dev-toolsbox").
+
+### Screen Frames
+
+| Frame | Pencil ID | Description |
+|-------|-----------|-------------|
+| Base64 Encoder/Decoder | `ynldz` | App screen for Base64 tool |
+| JWT Decoder | `RxEXO` | App screen for JWT tool |
+| UUID Generator | `IcWj0` | App screen for UUID tool |
+| JSON Diff | `6Ig1Z` | App screen for JSON Diff tool |
+| Hash Generator | `hgDbM` | App screen for Hash tool |
+| URL Encoder | `jzKNv` | App screen for URL Encoder tool |
+| Timestamp Converter | `POEnV` | App screen for Timestamp tool |
+| Regex Tester | `ZgawY` | App screen for Regex tool |
+| JSON Formatter | `bQxC5` | App screen for JSON Formatter tool |
+| HTTP Runner | `ea7nu` | App screen for HTTP Runner tool |
+| Landing Page | `nf3al` | Marketing/download page |
+| Design System | `vxiR7` | Reusable components catalog |
+
+### Reusable Component IDs
 
 | Component | Pencil ID |
 |-----------|-----------|
@@ -154,7 +191,15 @@ The design system is also defined in `app.pen` as reusable Pencil components und
 | Nav Item Default | `8Wp5b` |
 | Nav Item Active | `6HHmg` |
 | Section Label | `cjIvn` |
+| Section Label Large | `soAOE` |
 | Badge | `BFJwI` |
+| Badge Outline | `FfVQu` |
+| Badge Warning | `kB4Za` |
+| Badge Error | `zqbhX` |
+| Status Dot Success | `zajhg` |
+| Status Dot Error | `qFubE` |
+| Status Dot Warning | `X1RIZ` |
+| Copy Button | `7dx5P` |
 | Status Bar | `3x1Wa` |
 | Input Box | `bJerd` |
 | Output Box | `C8kyw` |
@@ -162,11 +207,42 @@ The design system is also defined in `app.pen` as reusable Pencil components und
 | Output Group | `HvVEd` |
 | Tool Header | `crfOw` |
 | Card | `tv5W5` |
+| Card Accent | `dSHw4` |
 | Panel | `v2e2t` |
+| Divider | `ce9Rj` |
+| Key Value Row | `iMuea` |
+| Icon Container | `Sx27N` |
+| Icon Container Small | `qi5ec` |
+| Logo Mark | `bdcCf` |
+| System Info Card | `Im8Ol` |
+| Table Row | `Kp9is` |
+| Table Header Row | `lwZXu` |
 | Sidebar | `ZGSyG` |
 | App Shell | `0x2UH` |
-| Copy Button | `7dx5P` |
-| Icon Container | `Sx27N` |
-| Key Value Row | `iMuea` |
-| Table Row | `Kp9is` |
-| Divider | `ce9Rj` |
+
+### Typography Components
+
+| Component | Pencil ID |
+|-----------|-----------|
+| Heading XL | `hoOwe` |
+| Heading LG | `RhuJB` |
+| Heading MD | `opaI3` |
+| Heading SM | `TJ9zC` |
+| Body Primary | `iRcoi` |
+| Body Secondary | `MjGJZ` |
+| Body Muted | `f2zKi` |
+| Caption | `NN8dQ` |
+
+### Design Token Variables (Pencil)
+
+The `app.pen` file has these variables defined:
+```
+$accent: #00FF88       $accent-dim: #00FF8810    $accent-border: #00FF8840
+$accent-bg: #00FF8815  $accent-muted: #00FF8830  $accent-glow: #00FF8866
+$accent-badge: #00FF8820
+$bg-main: #0C0C0C      $bg-sidebar: #080808     $bg-card: #0A0A0A
+$bg-elevated: #141414
+$text-primary: #FFFFFF  $text-secondary: #6a6a6a  $text-muted: #8A8A8A
+$border: #2f2f2f
+$warning: #FF8800       $error: #FF4444
+```

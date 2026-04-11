@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>dev-toolsbox — Local-First Developer Tools</title>
-  <meta name="description" content="A collection of essential local tools for developers. JWT Decoder, Base64, UUID Generator, JSON Diff — all offline, zero backend, blazing fast.">
+  <meta name="description" content="10 essential local tools for developers. JWT Decoder, Base64, UUID Generator, JSON Diff, Hash Generator, URL Encoder, Timestamp Converter, Regex Tester, JSON Formatter, HTTP Runner — all offline, zero backend, blazing fast.">
   <meta name="theme-color" content="#00FF88">
 
   <!-- Open Graph -->
   <meta property="og:title" content="dev-toolsbox — Local-First Developer Tools">
-  <meta property="og:description" content="JWT Decoder, Base64, UUID Generator, JSON Diff — all offline, zero backend, blazing fast.">
+  <meta property="og:description" content="10 essential local tools for developers — JWT, Base64, UUID, JSON Diff, Hash, URL Encoder, Timestamp, Regex, JSON Format, HTTP Runner. All offline, zero backend.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://caiollaz.github.io/dev-toolsbox/">
 
@@ -45,7 +45,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         DOWNLOAD
       </a>
-      <span class="nav-version">v1.0.0</span>
+      <span class="nav-version">v2.0.0</span>
     </div>
 
     <button class="nav-mobile-toggle" aria-label="Toggle menu" onclick="this.closest('.navbar').classList.toggle('open')">
@@ -59,14 +59,14 @@
   <section class="hero">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      LOCAL-FIRST DEV TOOLS &mdash; v1.0.0 NOW AVAILABLE
+      LOCAL-FIRST DEV TOOLS &mdash; v2.0.0 NOW AVAILABLE
     </div>
 
     <h1 class="hero-title">Developer tools.<br>Simplified.</h1>
 
     <p class="hero-sub">
-      A collection of essential local tools for developers. JWT Decoder, Base64,
-      UUID Generator, JSON Diff &mdash; all offline, zero backend, blazing fast.
+      10 essential local tools for developers. JWT Decoder, Base64, UUID Generator,
+      JSON Diff, Hash Generator, HTTP Runner &mdash; all offline, zero backend, blazing fast.
     </p>
 
     <div class="hero-buttons">
@@ -118,6 +118,30 @@
               <span class="mock-nav-dot"></span>
               UUID GENERATOR
             </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              HASH GENERATOR
+            </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              URL ENCODER
+            </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              TIMESTAMP
+            </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              REGEX TESTER
+            </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              JSON FORMAT
+            </div>
+            <div class="mock-nav-item">
+              <span class="mock-nav-dot"></span>
+              HTTP RUNNER
+            </div>
           </div>
         </div>
         <div class="mock-content">
@@ -147,7 +171,7 @@
   <section class="features" id="features">
     <div class="section-header">
       <span class="section-label">// FEATURES</span>
-      <h2 class="section-title">4 essential tools.<br>Zero configuration.</h2>
+      <h2 class="section-title">10 essential tools.<br>Zero configuration.</h2>
       <p class="section-sub">Every tool runs locally with no external dependencies. Just download and start working.</p>
     </div>
 
@@ -178,10 +202,59 @@
 
       <div class="feature-card">
         <div class="feature-icon">
-          <span class="icon-text" style="font-size: 18px;">&lt;&gt;</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
         </div>
         <h3 class="feature-title">JSON DIFF</h3>
         <p class="feature-desc">Compare two JSON objects side by side with highlighted additions, deletions and modifications. Spot changes instantly.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        </div>
+        <h3 class="feature-title">HASH GENERATOR</h3>
+        <p class="feature-desc">Generate MD5, SHA-1, SHA-256, SHA-512 hashes from any text input. Compare digests for integrity checks.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <h3 class="feature-title">URL ENCODER</h3>
+        <p class="feature-desc">Encode and decode URL components. Handle query strings, path segments, and special characters with ease.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
+        </div>
+        <h3 class="feature-title">TIMESTAMP</h3>
+        <p class="feature-desc">Convert between Unix timestamps, ISO 8601, and human-readable dates. Support for seconds and milliseconds.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="icon-text" style="font-size: 16px;">.*</span>
+        </div>
+        <h3 class="feature-title">REGEX TESTER</h3>
+        <p class="feature-desc">Test regular expressions with real-time matching and highlighting. See all matches, groups, and capture results instantly.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="icon-text" style="font-size: 18px;">{ }</span>
+        </div>
+        <h3 class="feature-title">JSON FORMATTER</h3>
+        <p class="feature-desc">Beautify, minify and validate JSON data. Auto-detect formatting issues and fix them with one click.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+        </div>
+        <h3 class="feature-title">HTTP RUNNER</h3>
+        <p class="feature-desc">Send HTTP requests with full control. Method selector, headers, auth presets, body editor, response viewer &mdash; desktop app only.</p>
+        <span class="feature-badge">DESKTOP ONLY</span>
       </div>
     </div>
   </section>
@@ -242,7 +315,7 @@
       </a>
     </div>
 
-    <span class="cta-version">v1.0.0 &middot; ~8MB &middot; MIT License</span>
+    <span class="cta-version">v2.0.0 &middot; ~8MB &middot; MIT License</span>
   </section>
 
   <!-- ========== FOOTER ========== -->

@@ -355,7 +355,7 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 6px 14px;
   font-size: 7px;
   font-weight: 500;
   color: var(--text-secondary);
@@ -574,6 +574,19 @@ a {
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+.feature-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  padding: 3px 8px;
 }
 
 /* ============================================================
