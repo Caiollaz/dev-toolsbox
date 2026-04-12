@@ -45,7 +45,7 @@ jobs:
           body: |
             ## DEXT ${{ steps.tag.outputs.tag }}
 
-            Local-first developer tools — 10 essential tools, all offline, zero backend.
+            Local-first developer tools — 17 tools, 6 categories, all offline, zero backend.
 
             ### Downloads
 
@@ -60,16 +60,18 @@ jobs:
             | Linux (RPM) | `.rpm` |
 
             ### What's included
-            - JWT Decoder
-            - Base64 Encoder/Decoder
-            - UUID v4 Generator
-            - JSON Diff
-            - Hash Generator (MD5, SHA-1, SHA-256, SHA-512)
-            - URL Encoder/Decoder
-            - Timestamp Converter
-            - Regex Tester
-            - JSON Formatter
-            - HTTP Runner (desktop only)
+
+            **Encode/Decode** — Base64, URL Encoder, JWT Decoder, cURL Converter
+
+            **JSON** — JSON Formatter, JSON Diff, JSON to TypeScript
+
+            **Generators** — UUID Generator, Hash Generator, Secret Generator
+
+            **Converters** — Timestamp Converter, Color Converter, Mock Generator
+
+            **Text** — Regex Tester, Markdown Preview
+
+            **DevOps** — HTTP Runner (desktop only), ENV Manager
 
             ---
             Built with Tauri v2 + React + TypeScript

@@ -4782,7 +4782,7 @@
                       "id": "xzcAV",
                       "name": "footerLogoTxt",
                       "fill": "#FFFFFF",
-                      "content": "dev-toolsbox",
+                      "content": "Dext",
                       "fontFamily": "JetBrains Mono",
                       "fontSize": 13,
                       "fontWeight": "600"
@@ -4861,7 +4861,7 @@
                   "id": "uJguh",
                   "name": "footerCopy",
                   "fill": "#8A8A8A",
-                  "content": "© 2026 dev-toolsbox. All rights reserved.",
+                  "content": "© 2026 dext. All rights reserved.",
                   "fontFamily": "JetBrains Mono",
                   "fontSize": 10,
                   "fontWeight": "normal"
