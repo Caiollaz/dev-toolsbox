@@ -4631,7 +4631,7 @@
               "id": "cY3g2",
               "name": "dsLabel",
               "fill": "$accent",
-              "content": "// DESIGN_SYSTEM",
+              "content": "// STYLE_GUIDE",
               "fontFamily": "JetBrains Mono",
               "fontSize": 10,
               "fontWeight": "500",

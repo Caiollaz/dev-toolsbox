@@ -333,7 +333,21 @@ a {
 .mock-nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  overflow-y: auto;
+  max-height: 340px;
+}
+
+.mock-nav-group-label {
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  padding: 8px 14px 3px;
+}
+
+.mock-nav-group-label:first-child {
+  padding-top: 0;
 }
 
 .mock-nav-item {
