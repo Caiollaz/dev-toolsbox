@@ -2360,7 +2360,7 @@
                   "id": "QG68U",
                   "name": "heroLabelTxt",
                   "fill": "#00FF88",
-                  "content": "LOCAL-FIRST DEV TOOLS — v2.0.0 NOW AVAILABLE",
+                  "content": "LOCAL-FIRST DEV TOOLS — v2.1.0 NOW AVAILABLE",
                   "fontFamily": "JetBrains Mono",
                   "fontSize": 10,
                   "fontWeight": "600",
@@ -2390,7 +2390,7 @@
               "fill": "#6a6a6a",
               "textGrowth": "fixed-width",
               "width": 700,
-              "content": "A collection of 10 essential local tools for developers. JWT Decoder, Base64,\nUUID Generator, JSON Diff, Hash Generator, URL Encoder, Timestamp Converter,\nRegex Tester, JSON Formatter, HTTP Runner — all offline, zero backend, blazing fast.",
+              "content": "17 essential local tools for developers organized in 6 categories.\nJWT Decoder, Base64, JSON Diff, Color Converter, Secret Generator,\ncURL Converter — all offline, zero backend, blazing fast.",
               "lineHeight": 1.7,
               "textAlign": "center",
               "fontFamily": "JetBrains Mono",
@@ -2683,6 +2683,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2690,7 +2692,10 @@
                             {
                               "type": "ellipse",
                               "id": "nSVMW",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn1i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2699,11 +2704,12 @@
                               "type": "text",
                               "id": "QhEVd",
                               "name": "mn1t",
-                              "fill": "#6a6a6a",
-                              "content": "JWT DECODER",
+                              "fill": "#8A8A8A",
+                              "content": "ENCODE / DECODE",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         },
@@ -2732,7 +2738,7 @@
                               "id": "adWTr",
                               "name": "mn2t",
                               "fill": "#6a6a6a",
-                              "content": "JSON DIFF",
+                              "content": "JWT DECODER",
                               "fontFamily": "JetBrains Mono",
                               "fontSize": 7,
                               "fontWeight": "500"
@@ -2803,7 +2809,7 @@
                               "id": "mxQIy",
                               "name": "mn4t",
                               "fill": "#6a6a6a",
-                              "content": "UUID GENERATOR",
+                              "content": "HASH GENERATOR",
                               "fontFamily": "JetBrains Mono",
                               "fontSize": 7,
                               "fontWeight": "500"
@@ -2835,7 +2841,7 @@
                               "id": "LD9pA",
                               "name": "mn5t",
                               "fill": "#6a6a6a",
-                              "content": "HASH GENERATOR",
+                              "content": "URL ENCODER",
                               "fontFamily": "JetBrains Mono",
                               "fontSize": 7,
                               "fontWeight": "500"
@@ -2850,6 +2856,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2857,7 +2865,10 @@
                             {
                               "type": "ellipse",
                               "id": "FUsXw",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn6i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2866,11 +2877,12 @@
                               "type": "text",
                               "id": "WtPNB",
                               "name": "mn6t",
-                              "fill": "#6a6a6a",
-                              "content": "URL ENCODER",
+                              "fill": "#8A8A8A",
+                              "content": "JSON",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         },
@@ -2882,6 +2894,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2889,7 +2903,10 @@
                             {
                               "type": "ellipse",
                               "id": "PceSm",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn7i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2898,11 +2915,12 @@
                               "type": "text",
                               "id": "8KWWk",
                               "name": "mn7t",
-                              "fill": "#6a6a6a",
-                              "content": "TIMESTAMP",
+                              "fill": "#8A8A8A",
+                              "content": "GENERATORS",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         },
@@ -2914,6 +2932,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2921,7 +2941,10 @@
                             {
                               "type": "ellipse",
                               "id": "D1hSc",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn8i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2930,11 +2953,12 @@
                               "type": "text",
                               "id": "61SDT",
                               "name": "mn8t",
-                              "fill": "#6a6a6a",
-                              "content": "REGEX TESTER",
+                              "fill": "#8A8A8A",
+                              "content": "CONVERTERS",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         },
@@ -2946,6 +2970,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2953,7 +2979,10 @@
                             {
                               "type": "ellipse",
                               "id": "awUVy",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn9i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2962,11 +2991,12 @@
                               "type": "text",
                               "id": "x91Tg",
                               "name": "mn9t",
-                              "fill": "#6a6a6a",
-                              "content": "JSON FORMAT",
+                              "fill": "#8A8A8A",
+                              "content": "TEXT",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         },
@@ -2978,6 +3008,8 @@
                           "gap": 8,
                           "padding": [
                             8,
+                            14,
+                            3,
                             14
                           ],
                           "alignItems": "center",
@@ -2985,7 +3017,10 @@
                             {
                               "type": "ellipse",
                               "id": "ik9Cs",
+                              "x": 14,
+                              "y": 8.5,
                               "name": "mn10i",
+                              "enabled": false,
                               "fill": "#6a6a6a",
                               "width": 8,
                               "height": 8
@@ -2994,11 +3029,12 @@
                               "type": "text",
                               "id": "cbr5h",
                               "name": "mn10t",
-                              "fill": "#6a6a6a",
-                              "content": "HTTP RUNNER",
+                              "fill": "#8A8A8A",
+                              "content": "DEVOPS",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 7,
-                              "fontWeight": "500"
+                              "fontSize": 6,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.5
                             }
                           ]
                         }
@@ -3251,7 +3287,7 @@
                   "fill": "#FFFFFF",
                   "textGrowth": "fixed-width",
                   "width": 600,
-                  "content": "10 essential tools.\nZero configuration.",
+                  "content": "17 tools. 6 categories.\nZero configuration.",
                   "lineHeight": 1.2,
                   "textAlign": "center",
                   "fontFamily": "Space Grotesk",
@@ -3266,7 +3302,7 @@
                   "fill": "#6a6a6a",
                   "textGrowth": "fixed-width",
                   "width": 600,
-                  "content": "Every tool runs locally with no external dependencies. Just download and start working.",
+                  "content": "Every tool runs locally with no external dependencies. Organized in 6 categories — just download and start working.",
                   "textAlign": "center",
                   "fontFamily": "JetBrains Mono",
                   "fontSize": 12,
@@ -3284,15 +3320,15 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "7CcJz",
+                  "id": "7xqWW",
                   "name": "Row 1",
                   "width": "fill_container",
                   "gap": 16,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "sncAQ",
-                      "name": "Card JWT",
+                      "id": "KFfJu",
+                      "name": "Group Encode/Decode",
                       "width": "fill_container",
                       "fill": "#0A0A0A",
                       "stroke": {
@@ -3305,61 +3341,185 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "NQGLW",
-                          "name": "c1Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "KZLV2",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "icon_font",
-                              "id": "KUNAB",
-                              "name": "c1IconF",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "key-round",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
+                              "type": "text",
+                              "id": "fQIx7",
+                              "name": "lbl1",
+                              "fill": "#00FF88",
+                              "content": "// ENCODE / DECODE",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "PBznB",
+                              "name": "cnt1",
+                              "fill": "#8A8A8A",
+                              "content": "4 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "rhjRH",
-                          "name": "c1Title",
-                          "fill": "#FFFFFF",
-                          "content": "JWT DECODER",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "y4tr4",
+                          "name": "Divider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "#2f2f2f"
                         },
                         {
-                          "type": "text",
-                          "id": "9ScpK",
-                          "name": "c1Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "sbPWE",
+                          "name": "Tool List",
                           "width": "fill_container",
-                          "content": "Decode JWT tokens instantly. Inspect header, payload and validate expiration — all without sending your tokens anywhere.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "IeFsb",
+                              "name": "t1a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "1sTrr",
+                                  "name": "t1an",
+                                  "fill": "#FFFFFF",
+                                  "content": "JWT DECODER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nxn9d",
+                                  "name": "t1ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Decode and validate JWT tokens",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "dgvXd",
+                              "name": "t1b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "5Q3GO",
+                                  "name": "t1bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "BASE64",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "0kSqu",
+                                  "name": "t1bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Encode and decode Base64 strings",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "552SZ",
+                              "name": "t1c",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "oQhFG",
+                                  "name": "t1cn",
+                                  "fill": "#FFFFFF",
+                                  "content": "HASH GENERATOR",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "HccGW",
+                                  "name": "t1cd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "QRSXN",
+                              "name": "t1d",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "jNTqR",
+                                  "name": "t1dn",
+                                  "fill": "#FFFFFF",
+                                  "content": "URL ENCODER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "o7DoW",
+                                  "name": "t1dd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Encode and decode URL components",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "YfjJ3",
-                      "name": "Card Base64",
+                      "id": "8xpIz",
+                      "name": "Group JSON",
                       "width": "fill_container",
+                      "height": 258,
                       "fill": "#0A0A0A",
                       "stroke": {
                         "thickness": 1,
@@ -3371,53 +3531,145 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "t0LQZ",
-                          "name": "c2Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "wLJSe",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "icon_font",
-                              "id": "Yi6dS",
-                              "name": "c2IconF",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "file-code",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
+                              "type": "text",
+                              "id": "aoUKL",
+                              "name": "lbl2",
+                              "fill": "#00FF88",
+                              "content": "// JSON",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "Hdt3N",
+                              "name": "cnt2",
+                              "fill": "#8A8A8A",
+                              "content": "3 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "jfo5U",
-                          "name": "c2Title",
-                          "fill": "#FFFFFF",
-                          "content": "BASE64",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "niveC",
+                          "name": "Divider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "#2f2f2f"
                         },
                         {
-                          "type": "text",
-                          "id": "QX0Pu",
-                          "name": "c2Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "qArpD",
+                          "name": "Tool List",
                           "width": "fill_container",
-                          "content": "Encode and decode Base64 strings with full UTF-8 support. Perfect for API debugging and data inspection.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "VLxNn",
+                              "name": "t2a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "HExIE",
+                                  "name": "t2an",
+                                  "fill": "#FFFFFF",
+                                  "content": "JSON FORMATTER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "3aZCz",
+                                  "name": "t2ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Beautify, minify and validate JSON data",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "X7T3C",
+                              "name": "t2b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "cLxpc",
+                                  "name": "t2bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "JSON DIFF",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "1e2eW",
+                                  "name": "t2bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Compare two JSON objects side by side",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "pzxqy",
+                              "name": "t2c",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Jjl85",
+                                  "name": "t2cn",
+                                  "fill": "#FFFFFF",
+                                  "content": "JSON → TYPESCRIPT",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "hCXxP",
+                                  "name": "t2cd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Convert JSON to TypeScript interfaces",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -3425,15 +3677,15 @@
                 },
                 {
                   "type": "frame",
-                  "id": "9oOsb",
+                  "id": "J06TX",
                   "name": "Row 2",
                   "width": "fill_container",
                   "gap": 16,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "MLjsW",
-                      "name": "Card UUID",
+                      "id": "jzrZT",
+                      "name": "Group Generators",
                       "width": "fill_container",
                       "fill": "#0A0A0A",
                       "stroke": {
@@ -3446,60 +3698,152 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "QizCl",
-                          "name": "c3Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "YZsWA",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
                               "type": "text",
-                              "id": "XaBbC",
-                              "name": "c3IconTxt",
+                              "id": "siVdB",
+                              "name": "lbl3",
                               "fill": "#00FF88",
-                              "content": "#",
+                              "content": "// GENERATORS",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 20,
-                              "fontWeight": "700"
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "Zmniq",
+                              "name": "cnt3",
+                              "fill": "#8A8A8A",
+                              "content": "3 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "88T0C",
-                          "name": "c3Title",
-                          "fill": "#FFFFFF",
-                          "content": "UUID GENERATOR",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "Ufgus",
+                          "name": "Divider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "#2f2f2f"
                         },
                         {
-                          "type": "text",
-                          "id": "g8a3r",
-                          "name": "c3Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "M61aW",
+                          "name": "Tool List",
                           "width": "fill_container",
-                          "content": "Generate RFC-compliant UUID v4 values with one click. Copy instantly and keep a history of all generated IDs.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "veGiZ",
+                              "name": "t3a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "2lGwK",
+                                  "name": "t3an",
+                                  "fill": "#FFFFFF",
+                                  "content": "UUID GENERATOR",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "EONFk",
+                                  "name": "t3ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Generate RFC-compliant UUID v4 identifiers",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "lbUgA",
+                              "name": "t3b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "aaN4x",
+                                  "name": "t3bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "SECRET GENERATOR",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "s4kd7",
+                                  "name": "t3bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Generate secure tokens, API keys and passwords",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "WRAI1",
+                              "name": "t3c",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "bA2uf",
+                                  "name": "t3cn",
+                                  "fill": "#FFFFFF",
+                                  "content": "MOCK GENERATOR",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "mYShU",
+                                  "name": "t3cd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Generate mock data from interface definitions",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "cWqeu",
-                      "name": "Card JSON Diff",
+                      "id": "264ft",
+                      "name": "Group Converters",
                       "width": "fill_container",
                       "fill": "#0A0A0A",
                       "stroke": {
@@ -3512,53 +3856,145 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "ceTxB",
-                          "name": "c4Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "sEI0n",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
                               "type": "text",
-                              "id": "W9BlX",
-                              "name": "c4IconTxt",
+                              "id": "LgvNC",
+                              "name": "lbl4",
                               "fill": "#00FF88",
-                              "content": "<>",
+                              "content": "// CONVERTERS",
                               "fontFamily": "JetBrains Mono",
-                              "fontSize": 18,
-                              "fontWeight": "700"
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "3hdD6",
+                              "name": "cnt4",
+                              "fill": "#8A8A8A",
+                              "content": "3 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "Bd8c6",
-                          "name": "c4Title",
-                          "fill": "#FFFFFF",
-                          "content": "JSON DIFF",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "5kWf0",
+                          "name": "Divider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "#2f2f2f"
                         },
                         {
-                          "type": "text",
-                          "id": "2UE3V",
-                          "name": "c4Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "WCP6R",
+                          "name": "Tool List",
                           "width": "fill_container",
-                          "content": "Compare two JSON objects side by side with highlighted additions, deletions and modifications. Spot changes instantly.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "NC4Mx",
+                              "name": "t4a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "a45BT",
+                                  "name": "t4an",
+                                  "fill": "#FFFFFF",
+                                  "content": "TIMESTAMP",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "RYUSX",
+                                  "name": "t4ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Convert Unix timestamps and readable dates",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "eXtgH",
+                              "name": "t4b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "KDupX",
+                                  "name": "t4bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "COLOR CONVERTER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Fquwo",
+                                  "name": "t4bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Convert colors between HEX, RGB, HSL",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "lJWSB",
+                              "name": "t4c",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "6oXe6",
+                                  "name": "t4cn",
+                                  "fill": "#FFFFFF",
+                                  "content": "CURL CONVERTER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "YAyHa",
+                                  "name": "t4cd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Convert cURL commands to multiple languages",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -3566,15 +4002,15 @@
                 },
                 {
                   "type": "frame",
-                  "id": "jH4pt",
+                  "id": "c6kDI",
                   "name": "Row 3",
                   "width": "fill_container",
                   "gap": 16,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "Ux8X8",
-                      "name": "Card Hash",
+                      "id": "NolAg",
+                      "name": "Group Text",
                       "width": "fill_container",
                       "fill": "#0A0A0A",
                       "stroke": {
@@ -3587,60 +4023,121 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "6tMQZ",
-                          "name": "c5Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "45V7q",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "icon_font",
-                              "id": "CaOUm",
-                              "name": "c5iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "shield",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
+                              "type": "text",
+                              "id": "8RucF",
+                              "name": "lbl5",
+                              "fill": "#00FF88",
+                              "content": "// TEXT",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "Bpkib",
+                              "name": "cnt5",
+                              "fill": "#8A8A8A",
+                              "content": "2 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
                         {
-                          "type": "text",
-                          "id": "CSSw3",
-                          "name": "c5Title",
-                          "fill": "#FFFFFF",
-                          "content": "HASH GENERATOR",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
+                          "type": "frame",
+                          "id": "LFFBq",
+                          "name": "Divider",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": "#2f2f2f"
                         },
                         {
-                          "type": "text",
-                          "id": "U70rS",
-                          "name": "c5Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "htMJv",
+                          "name": "Tool List",
                           "width": "fill_container",
-                          "content": "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from any text input. Compare hashes and verify data integrity locally.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "9Atww",
+                              "name": "t5a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "42uPC",
+                                  "name": "t5an",
+                                  "fill": "#FFFFFF",
+                                  "content": "REGEX TESTER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "xIAeL",
+                                  "name": "t5ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Test regex with real-time matching and highlighting",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "jBART",
+                              "name": "t5b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Oz6VS",
+                                  "name": "t5bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "MARKDOWN PREVIEW",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "HWbS4",
+                                  "name": "t5bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Write Markdown with live split-view preview",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "GnMuC",
-                      "name": "Card URL Encoder",
+                      "id": "vpzLk",
+                      "name": "Group DevOps",
                       "width": "fill_container",
                       "fill": "#0A0A0A",
                       "stroke": {
@@ -3653,335 +4150,114 @@
                       "children": [
                         {
                           "type": "frame",
-                          "id": "dPGnL",
-                          "name": "c6Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
+                          "id": "0dFIE",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "justifyContent": "space_between",
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "icon_font",
-                              "id": "RVntr",
-                              "name": "c6iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "link",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
+                              "type": "text",
+                              "id": "pQkgm",
+                              "name": "lbl6",
+                              "fill": "#00FF88",
+                              "content": "// DEVOPS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "0tIrT",
+                              "name": "cnt6",
+                              "fill": "#8A8A8A",
+                              "content": "2 TOOLS",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 9,
+                              "fontWeight": "500"
                             }
                           ]
                         },
-                        {
-                          "type": "text",
-                          "id": "MrxaS",
-                          "name": "c6Title",
-                          "fill": "#FFFFFF",
-                          "content": "URL ENCODER",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "ygWeg",
-                          "name": "c6Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Encode and decode URL components with full special character support. Essential for API development and debugging.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Pr2Ha",
-                  "name": "Row 4",
-                  "width": "fill_container",
-                  "gap": 16,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "XakAX",
-                      "name": "Card Timestamp",
-                      "width": "fill_container",
-                      "fill": "#0A0A0A",
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "#2f2f2f"
-                      },
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": 28,
-                      "children": [
                         {
                           "type": "frame",
-                          "id": "63WsV",
-                          "name": "c7Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "UFZdv",
-                              "name": "c7iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "timer",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "FVexw",
-                          "name": "c7Title",
-                          "fill": "#FFFFFF",
-                          "content": "TIMESTAMP",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "Le4WT",
-                          "name": "c7Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
+                          "id": "8uZ4Q",
+                          "name": "Divider",
                           "width": "fill_container",
-                          "content": "Convert between Unix timestamps, ISO 8601 and human-readable dates. Supports milliseconds and multiple timezone formats.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "8BaU0",
-                      "name": "Card Regex",
-                      "width": "fill_container",
-                      "fill": "#0A0A0A",
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "#2f2f2f"
-                      },
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": 28,
-                      "children": [
+                          "height": 1,
+                          "fill": "#2f2f2f"
+                        },
                         {
                           "type": "frame",
-                          "id": "DucT7",
-                          "name": "c8Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
-                          "alignItems": "center",
+                          "id": "pl97T",
+                          "name": "Tool List",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
                           "children": [
                             {
-                              "type": "icon_font",
-                              "id": "PJH03",
-                              "name": "c8iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "regex",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "2uKEv",
-                          "name": "c8Title",
-                          "fill": "#FFFFFF",
-                          "content": "REGEX TESTER",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "HOiJI",
-                          "name": "c8Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Test regular expressions in real-time with live match highlighting, capture groups and flag support. Debug patterns instantly.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "Zjcqu",
-                  "name": "Row 5",
-                  "width": "fill_container",
-                  "gap": 16,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "3VRuG",
-                      "name": "Card JSON Formatter",
-                      "width": "fill_container",
-                      "fill": "#0A0A0A",
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "#2f2f2f"
-                      },
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": 28,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "xRuQD",
-                          "name": "c9Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
+                              "type": "frame",
+                              "id": "HMzMX",
+                              "name": "t6a",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "3ILlv",
+                                  "name": "t6an",
+                                  "fill": "#FFFFFF",
+                                  "content": "HTTP RUNNER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "xA9TB",
+                                  "name": "t6ad",
+                                  "fill": "#6a6a6a",
+                                  "content": "Send HTTP requests with full control",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
                             {
-                              "type": "icon_font",
-                              "id": "GnuSX",
-                              "name": "c9iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "braces",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
+                              "type": "frame",
+                              "id": "c3ExQ",
+                              "name": "t6b",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "g3klo",
+                                  "name": "t6bn",
+                                  "fill": "#FFFFFF",
+                                  "content": "ENV MANAGER",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 11,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.5
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "asVpV",
+                                  "name": "t6bd",
+                                  "fill": "#6a6a6a",
+                                  "content": "Compare and manage .env files side by side",
+                                  "fontFamily": "JetBrains Mono",
+                                  "fontSize": 10,
+                                  "fontWeight": "normal"
+                                }
+                              ]
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "1XTfF",
-                          "name": "c9Title",
-                          "fill": "#FFFFFF",
-                          "content": "JSON FORMATTER",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "LeBoN",
-                          "name": "c9Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Format, minify and validate JSON with syntax highlighting. Supports large files with tree view navigation and error detection.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "VRahK",
-                      "name": "Card HTTP Runner",
-                      "width": "fill_container",
-                      "fill": "#0A0A0A",
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "#2f2f2f"
-                      },
-                      "layout": "vertical",
-                      "gap": 16,
-                      "padding": 28,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "0U2QF",
-                          "name": "c10Icon",
-                          "width": 48,
-                          "height": 48,
-                          "fill": "#00FF8815",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "#00FF8830"
-                          },
-                          "justifyContent": "center",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "icon_font",
-                              "id": "21vv9",
-                              "name": "c10iconf",
-                              "width": 22,
-                              "height": 22,
-                              "iconFontName": "send",
-                              "iconFontFamily": "lucide",
-                              "fill": "#00FF88"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "4OBUH",
-                          "name": "c10Title",
-                          "fill": "#FFFFFF",
-                          "content": "HTTP RUNNER",
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 14,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.5
-                        },
-                        {
-                          "type": "text",
-                          "id": "P6ceg",
-                          "name": "c10Desc",
-                          "fill": "#6a6a6a",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Send HTTP requests with custom headers, auth and body types. CORS-free via Tauri — desktop only. Export as cURL commands.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "JetBrains Mono",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -4319,7 +4595,7 @@
               "id": "U5ScF",
               "name": "ctaSub",
               "fill": "#6a6a6a",
-              "content": "Download dev-toolsbox for free. Available on all platforms.",
+              "content": "Download DEXT for free. Available on all platforms.",
               "textAlign": "center",
               "fontFamily": "JetBrains Mono",
               "fontSize": 13,
@@ -4452,7 +4728,7 @@
               "id": "lOPAj",
               "name": "ctaVersion",
               "fill": "#8A8A8A",
-              "content": "v2.0.0  ·  ~8MB  ·  MIT License",
+              "content": "v2.1.0  ·  ~8MB  ·  MIT License",
               "fontFamily": "JetBrains Mono",
               "fontSize": 10,
               "fontWeight": "normal"
