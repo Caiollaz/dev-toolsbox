@@ -12,6 +12,13 @@ import { TimestampConverterTool } from '../tools/timestamp-converter-tool';
 import { RegexTesterTool } from '../tools/regex-tester-tool';
 import { JsonFormatterTool } from '../tools/json-formatter-tool';
 import { HttpRunnerTool } from '../tools/http-runner-tool';
+import { EnvManagerTool } from '../tools/env-manager-tool';
+import { JsonToTypescriptTool } from '../tools/json-to-typescript-tool';
+import { MockGeneratorTool } from '../tools/mock-generator-tool';
+import { ColorConverterTool } from '../tools/color-converter-tool';
+import { MarkdownPreviewTool } from '../tools/markdown-preview-tool';
+import { CurlConverterTool } from '../tools/curl-converter-tool';
+import { SecretGeneratorTool } from '../tools/secret-generator-tool';
 import styles from './layout.module.css';
 
 export function Layout() {
@@ -39,6 +46,20 @@ export function Layout() {
         return <JsonFormatterTool />;
       case 'http-runner':
         return <HttpRunnerTool />;
+      case 'env-manager':
+        return <EnvManagerTool />;
+      case 'json-to-typescript':
+        return <JsonToTypescriptTool />;
+      case 'mock-generator':
+        return <MockGeneratorTool />;
+      case 'color-converter':
+        return <ColorConverterTool />;
+      case 'markdown-preview':
+        return <MarkdownPreviewTool />;
+      case 'curl-converter':
+        return <CurlConverterTool />;
+      case 'secret-generator':
+        return <SecretGeneratorTool />;
     }
   };
 

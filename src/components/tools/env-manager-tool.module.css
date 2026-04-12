@@ -1,0 +1,174 @@
+.label {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.inputCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.inputBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-lg);
+}
+
+.textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: #ff444410;
+  border: 1px solid #ff444440;
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.errorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-error);
+  flex-shrink: 0;
+}
+
+/* Diff Section */
+.diffSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.diffTable {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.diffRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: 8px var(--spacing-lg);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.diffRow:last-child {
+  border-bottom: none;
+}
+
+.diffSymbol {
+  width: 16px;
+  text-align: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.diffKey {
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.diffValue {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Diff type colors */
+.added .diffSymbol { color: var(--accent); }
+.added .diffKey { color: var(--accent); }
+.removed .diffSymbol { color: var(--color-error); }
+.removed .diffKey { color: var(--color-error); }
+.changed .diffSymbol { color: var(--color-warning); }
+.changed .diffKey { color: var(--color-warning); }
+.equal .diffSymbol { color: var(--text-muted); }
+.equal .diffKey { color: var(--text-muted); }
+
+.oldVal {
+  color: var(--color-error);
+  text-decoration: line-through;
+}
+
+.arrow {
+  color: var(--text-muted);
+}
+
+.newVal {
+  color: var(--accent);
+}
+
+/* Status bar */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.statusText {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusRight {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}

@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import type { ToolType } from '../../types';
-import { TOOLS } from '../../types';
+import { TOOLS, TOOL_GROUPS } from '../../types';
 import {
   KeyRound,
   GitCompare,
@@ -11,6 +12,14 @@ import {
   Regex,
   Braces,
   Send,
+  ChevronDown,
+  FileType,
+  Lock,
+  Database,
+  Palette,
+  BookOpen,
+  Terminal,
+  FileCog,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import styles from './sidebar.module.css';
@@ -19,6 +28,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'key-round': KeyRound,
   'git-compare': GitCompare,
   'file-code': FileCode,
+  'file-type': FileType,
+  'file-cog': FileCog,
+  'book-open': BookOpen,
   hash: Hash,
   shield: Shield,
   link: Link,
@@ -26,6 +38,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   regex: Regex,
   braces: Braces,
   send: Send,
+  lock: Lock,
+  database: Database,
+  palette: Palette,
+  terminal: Terminal,
 };
 
 interface SidebarProps {
@@ -34,6 +50,41 @@ interface SidebarProps {
 }
 
 export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
+  const activeGroup = TOOLS.find((t) => t.id === activeTool)?.group;
+
+  const [collapsed, setCollapsed] = useState<Set<string>>(() => {
+    const initial = new Set<string>();
+    for (const group of TOOL_GROUPS) {
+      if (group.id !== activeGroup) {
+        initial.add(group.id);
+      }
+    }
+    return initial;
+  });
+
+  // Auto-expand the group that contains the active tool
+  useEffect(() => {
+    if (activeGroup && collapsed.has(activeGroup)) {
+      setCollapsed((prev) => {
+        const next = new Set(prev);
+        next.delete(activeGroup);
+        return next;
+      });
+    }
+  }, [activeGroup, collapsed]);
+
+  const toggleGroup = (groupId: string) => {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(groupId)) {
+        next.delete(groupId);
+      } else {
+        next.add(groupId);
+      }
+      return next;
+    });
+  };
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.top}>
@@ -48,21 +99,45 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
           <span className={styles.logoText}>DEXT</span>
         </div>
 
-        {/* Navigation */}
+        {/* Grouped Navigation */}
         <nav className={styles.nav}>
-          {TOOLS.map((tool) => {
-            const IconComponent = ICON_MAP[tool.icon];
+          {TOOL_GROUPS.map((group) => {
+            const groupTools = TOOLS.filter((t) => t.group === group.id);
+            const isCollapsed = collapsed.has(group.id);
+
             return (
-              <button
-                key={tool.id}
-                className={`${styles.navItem} ${activeTool === tool.id ? styles.navItemActive : ''}`}
-                onClick={() => onToolSelect(tool.id)}
-              >
-                <span className={styles.navIcon}>
-                  {IconComponent ? <IconComponent size={16} /> : tool.icon}
-                </span>
-                <span className={styles.navText}>{tool.label}</span>
-              </button>
+              <div key={group.id} className={styles.navGroup}>
+                <button
+                  className={styles.navGroupHeader}
+                  onClick={() => toggleGroup(group.id)}
+                >
+                  <span className={styles.navGroupLabel}>{group.label}</span>
+                  <ChevronDown
+                    size={12}
+                    className={`${styles.navGroupChevron} ${isCollapsed ? styles.navGroupChevronCollapsed : ''}`}
+                  />
+                </button>
+
+                {!isCollapsed && (
+                  <div className={styles.navGroupItems}>
+                    {groupTools.map((tool) => {
+                      const IconComponent = ICON_MAP[tool.icon];
+                      return (
+                        <button
+                          key={tool.id}
+                          className={`${styles.navItem} ${activeTool === tool.id ? styles.navItemActive : ''}`}
+                          onClick={() => onToolSelect(tool.id)}
+                        >
+                          <span className={styles.navIcon}>
+                            {IconComponent ? <IconComponent size={16} /> : tool.icon}
+                          </span>
+                          <span className={styles.navText}>{tool.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             );
           })}
         </nav>
@@ -74,7 +149,7 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
           <p className={styles.localDesc}>
             No external backend. All data stays on your machine.
           </p>
-          <span className={styles.version}>v2.0.4</span>
+          <span className={styles.version}>v2.1.0</span>
         </div>
       </div>
     </aside>

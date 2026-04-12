@@ -8,12 +8,15 @@
   flex-direction: column;
   justify-content: space-between;
   padding: var(--spacing-2xl) 0;
+  overflow: hidden;
 }
 
 .top {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3xl);
+  min-height: 0;
+  flex: 1;
 }
 
 /* Logo */
@@ -22,6 +25,7 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: 0 var(--spacing-xl);
+  flex-shrink: 0;
 }
 
 .logoMark {
@@ -50,9 +54,73 @@
 .nav {
   display: flex;
   flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Nav Groups */
+.navGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.navGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px var(--spacing-xl);
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.navGroupHeader:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.navGroupLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+}
+
+.navGroupChevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.navGroupChevronCollapsed {
+  transform: rotate(-90deg);
+}
+
+.navGroupItems {
+  display: flex;
+  flex-direction: column;
   gap: 2px;
 }
 
+/* Nav Items */
 .navItem {
   display: flex;
   align-items: center;
@@ -77,6 +145,7 @@
   color: var(--text-secondary);
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
 }
 
 .navText {
@@ -85,6 +154,9 @@
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navItemActive {
@@ -106,6 +178,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+  flex-shrink: 0;
 }
 
 .localMode {

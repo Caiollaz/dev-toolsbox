@@ -1,0 +1,201 @@
+.label {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.columns {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.validBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 2px 8px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+}
+
+.invalidBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--color-error);
+  padding: 2px 8px;
+  background: #ff444410;
+  border: 1px solid #ff444440;
+}
+
+.inputBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-lg);
+  flex: 1;
+}
+
+.inputBoxError {
+  border-color: var(--color-error);
+}
+
+.textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.rootNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.rootLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.rootInput {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+  width: 140px;
+}
+
+.rootInput:focus {
+  border-color: var(--accent-border);
+}
+
+.outputBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-lg);
+  flex: 1;
+  overflow: auto;
+}
+
+.outputCode {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--accent);
+  white-space: pre;
+  margin: 0;
+}
+
+.copyBtn {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copyBtn:hover {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+.copyBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: #ff444410;
+  border: 1px solid #ff444440;
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.errorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-error);
+  flex-shrink: 0;
+}
+
+/* Status bar */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.statusText {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusRight {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
