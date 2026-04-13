@@ -1,7 +1,6 @@
 use chrono::{DateTime, Utc};
 use rustls::pki_types::ServerName;
 use serde::Serialize;
-use std::io::Read;
 use std::net::TcpStream;
 use std::sync::Arc;
 use x509_parser::prelude::*;
@@ -58,11 +57,13 @@ fn inspect_ssl_sync(domain: &str) -> Result<SslCertInfo, String> {
     tcp.set_write_timeout(Some(std::time::Duration::from_secs(10)))
         .ok();
 
-    let mut tls = rustls::Stream::new(&mut conn, &mut tcp);
-
-    // Drive the handshake by attempting a read
-    let mut buf = [0u8; 1];
-    let _ = tls.read(&mut buf);
+    // Drive the TLS handshake to completion explicitly.
+    // We use complete_io() which only performs the handshake I/O
+    // without trying to read application data (unlike Stream::read).
+    while conn.is_handshaking() {
+        conn.complete_io(&mut tcp)
+            .map_err(|e| format!("TLS handshake failed: {}", e))?;
+    }
 
     let peer_certs = conn
         .peer_certificates()
