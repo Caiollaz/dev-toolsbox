@@ -1,0 +1,339 @@
+/* ── File Path Bar ────────────────────────────────── */
+
+.fileBar {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: stretch;
+}
+
+.fileInput {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  outline: none;
+}
+
+.fileInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.fileInput:focus {
+  border-color: var(--accent-border);
+}
+
+.watchBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.watchBtn:hover {
+  opacity: 0.9;
+}
+
+.watchBtnActive {
+  background: var(--color-error);
+  color: var(--text-primary);
+}
+
+.stopBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.stopBtn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+/* ── Filter Bar ──────────────────────────────────── */
+
+.filterBar {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: stretch;
+}
+
+.filterInput {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--spacing-sm) var(--spacing-md);
+  outline: none;
+}
+
+.filterInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.filterInput:focus {
+  border-color: var(--accent-border);
+}
+
+.levelBtns {
+  display: flex;
+  gap: 2px;
+}
+
+.levelBtn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.15s;
+}
+
+.levelBtn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.levelBtnActive {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+
+.levelBtnError {
+  color: var(--color-error);
+  border-color: #ff444440;
+  background: #ff444410;
+}
+
+.levelBtnWarn {
+  color: var(--color-warning);
+  border-color: #ff880040;
+  background: #ff880010;
+}
+
+.levelBtnInfo {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+
+.levelBtnDebug {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  background: var(--bg-surface);
+}
+
+/* ── Log Output ──────────────────────────────────── */
+
+.logOutput {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  flex: 1;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.logLine {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: 2px var(--spacing-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.logLine:last-child {
+  border-bottom: none;
+}
+
+.logLine:hover {
+  background: var(--bg-surface);
+}
+
+.logTimestamp {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  font-size: 10px;
+  min-width: 80px;
+}
+
+.logLevel {
+  font-weight: 700;
+  font-size: 10px;
+  flex-shrink: 0;
+  min-width: 44px;
+  text-transform: uppercase;
+}
+
+.logLevelError {
+  color: var(--color-error);
+}
+
+.logLevelWarn {
+  color: var(--color-warning);
+}
+
+.logLevelInfo {
+  color: var(--accent);
+}
+
+.logLevelDebug {
+  color: var(--text-secondary);
+}
+
+.logLevelTrace {
+  color: var(--text-muted);
+}
+
+.logContent {
+  color: var(--text-primary);
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.emptyLog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: var(--spacing-xl);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ── Error ────────────────────────────────────────── */
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--color-error);
+  font-size: 11px;
+  color: var(--color-error);
+}
+
+.errorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-error);
+  flex-shrink: 0;
+}
+
+/* ── Desktop Only ─────────────────────────────────── */
+
+.desktopOnly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-4xl);
+  min-height: 300px;
+}
+
+.desktopOnlyIcon {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.desktopOnlyTitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.desktopOnlyDesc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* ── Status Bar ───────────────────────────────────── */
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.statusDotWatching {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.statusDotIdle {
+  background: var(--text-secondary);
+  box-shadow: none;
+}
+
+.statusText {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusRight {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

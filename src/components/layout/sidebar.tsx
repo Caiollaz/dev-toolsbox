@@ -20,6 +20,12 @@ import {
   BookOpen,
   Terminal,
   FileCog,
+  Radar,
+  Globe,
+  ShieldCheck,
+  Plug,
+  Container,
+  FileText,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import styles from './sidebar.module.css';
@@ -30,7 +36,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   'file-code': FileCode,
   'file-type': FileType,
   'file-cog': FileCog,
+  'file-text': FileText,
   'book-open': BookOpen,
+  'shield-check': ShieldCheck,
   hash: Hash,
   shield: Shield,
   link: Link,
@@ -42,6 +50,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   database: Database,
   palette: Palette,
   terminal: Terminal,
+  radar: Radar,
+  globe: Globe,
+  plug: Plug,
+  container: Container,
 };
 
 interface SidebarProps {

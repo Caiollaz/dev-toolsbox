@@ -15,7 +15,13 @@ export type ToolType =
   | 'regex-tester'
   | 'markdown-preview'
   | 'http-runner'
-  | 'env-manager';
+  | 'env-manager'
+  | 'port-scanner'
+  | 'dns-lookup'
+  | 'ssl-inspector'
+  | 'websocket-tester'
+  | 'docker-dashboard'
+  | 'log-tail-viewer';
 
 export type ToolGroupId =
   | 'encode-decode'
@@ -23,6 +29,7 @@ export type ToolGroupId =
   | 'generators'
   | 'converters'
   | 'text'
+  | 'network'
   | 'devops';
 
 export interface ToolGroup {
@@ -51,6 +58,7 @@ export const TOOL_GROUPS: ToolGroup[] = [
   { id: 'generators', label: 'GENERATORS' },
   { id: 'converters', label: 'CONVERTERS' },
   { id: 'text', label: 'TEXT' },
+  { id: 'network', label: 'NETWORK' },
   { id: 'devops', label: 'DEVOPS' },
 ];
 
@@ -179,5 +187,48 @@ export const TOOLS: ToolConfig[] = [
     icon: 'file-cog',
     description: 'Compare and manage .env files',
     group: 'devops',
+  },
+  {
+    id: 'docker-dashboard',
+    label: 'DOCKER',
+    icon: 'container',
+    description: 'Manage Docker containers — start, stop, restart and view logs (desktop only)',
+    group: 'devops',
+  },
+  {
+    id: 'log-tail-viewer',
+    label: 'LOG TAIL',
+    icon: 'file-text',
+    description: 'Watch log files in real-time with filtering and level highlighting (desktop only)',
+    group: 'devops',
+  },
+  // NETWORK
+  {
+    id: 'port-scanner',
+    label: 'PORT SCANNER',
+    icon: 'radar',
+    description: 'Scan local ports to find running services (desktop only)',
+    group: 'network',
+  },
+  {
+    id: 'dns-lookup',
+    label: 'DNS LOOKUP',
+    icon: 'globe',
+    description: 'Resolve domains and inspect DNS records (desktop only)',
+    group: 'network',
+  },
+  {
+    id: 'ssl-inspector',
+    label: 'SSL INSPECTOR',
+    icon: 'shield-check',
+    description: 'Inspect TLS certificates, chain and expiry details (desktop only)',
+    group: 'network',
+  },
+  {
+    id: 'websocket-tester',
+    label: 'WEBSOCKET',
+    icon: 'plug',
+    description: 'Connect to WebSocket servers, send and receive messages in real-time',
+    group: 'network',
   },
 ];

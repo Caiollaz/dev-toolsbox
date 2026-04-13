@@ -19,6 +19,12 @@ import { ColorConverterTool } from '../tools/color-converter-tool';
 import { MarkdownPreviewTool } from '../tools/markdown-preview-tool';
 import { CurlConverterTool } from '../tools/curl-converter-tool';
 import { SecretGeneratorTool } from '../tools/secret-generator-tool';
+import { PortScannerTool } from '../tools/port-scanner-tool';
+import { DnsLookupTool } from '../tools/dns-lookup-tool';
+import { SslInspectorTool } from '../tools/ssl-inspector-tool';
+import { WebsocketTesterTool } from '../tools/websocket-tester-tool';
+import { DockerDashboardTool } from '../tools/docker-dashboard-tool';
+import { LogTailViewerTool } from '../tools/log-tail-viewer-tool';
 import styles from './layout.module.css';
 
 export function Layout() {
@@ -60,6 +66,18 @@ export function Layout() {
         return <CurlConverterTool />;
       case 'secret-generator':
         return <SecretGeneratorTool />;
+      case 'port-scanner':
+        return <PortScannerTool />;
+      case 'dns-lookup':
+        return <DnsLookupTool />;
+      case 'ssl-inspector':
+        return <SslInspectorTool />;
+      case 'websocket-tester':
+        return <WebsocketTesterTool />;
+      case 'docker-dashboard':
+        return <DockerDashboardTool />;
+      case 'log-tail-viewer':
+        return <LogTailViewerTool />;
     }
   };
 
