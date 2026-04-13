@@ -1,6 +1,6 @@
 /**
  * OpenVPN Manager Service
- * Uses Tauri invoke to manage OpenVPN connections via systemctl.
+ * Uses Tauri invoke to manage OpenVPN connections via openvpn3.
  * Saves profiles (username + password + path) in localStorage.
  */
 

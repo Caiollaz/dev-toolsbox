@@ -54,6 +54,10 @@ export function OpenVpnManagerTool() {
   const [savedOpen, setSavedOpen] = useState(true);
   const [activeProfileId, setActiveProfileId] = useState<string | null>(null);
 
+  // OTP prompt
+  const [showOtpPrompt, setShowOtpPrompt] = useState(false);
+  const otpInputRef = useRef<HTMLInputElement>(null);
+
   // Status polling
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -134,6 +138,14 @@ export function OpenVpnManagerTool() {
     }
 
     setError('');
+    setOtp('');
+    setShowOtpPrompt(true);
+    // Focus the OTP input after render
+    setTimeout(() => otpInputRef.current?.focus(), 50);
+  };
+
+  const handleOtpConfirm = async () => {
+    setShowOtpPrompt(false);
     setConnecting(true);
     setLogs([]);
 
@@ -164,6 +176,11 @@ export function OpenVpnManagerTool() {
       setError(String(err));
       setConnecting(false);
     }
+  };
+
+  const handleOtpCancel = () => {
+    setShowOtpPrompt(false);
+    setOtp('');
   };
 
   const handleDisconnect = async () => {
@@ -338,20 +355,48 @@ export function OpenVpnManagerTool() {
             />
           </div>
         </div>
-        <div className={styles.field}>
-          <span className={styles.fieldLabel}>// SECURITY CODE</span>
-          <div className={styles.fieldInput}>
-            <ShieldCheck size={14} />
-            <input
-              className={styles.fieldInputText}
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              placeholder="OTP / 2FA code"
-            />
+      </div>
+
+      {/* OTP Prompt Modal */}
+      {showOtpPrompt && (
+        <div className={styles.otpOverlay} onClick={handleOtpCancel}>
+          <div className={styles.otpModal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.otpHeader}>
+              <ShieldCheck size={16} />
+              <span>// SECURITY_CODE</span>
+            </div>
+            <p className={styles.otpDesc}>
+              Enter your 2FA / TOTP code to continue
+            </p>
+            <div className={styles.otpInputRow}>
+              <input
+                ref={otpInputRef}
+                className={styles.otpInput}
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleOtpConfirm();
+                  if (e.key === 'Escape') handleOtpCancel();
+                }}
+                placeholder="000000"
+                autoComplete="one-time-code"
+                inputMode="numeric"
+                maxLength={8}
+              />
+            </div>
+            <div className={styles.otpActions}>
+              <button className={styles.otpBtnCancel} onClick={handleOtpCancel}>
+                CANCEL
+              </button>
+              <button className={styles.otpBtnConfirm} onClick={handleOtpConfirm}>
+                <Plug size={14} />
+                CONNECT
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Area: Status + Logs */}
       <div className={styles.mainArea}>

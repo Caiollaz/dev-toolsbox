@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Group as PanelGroup, Panel, Separator as PanelResizeHandle } from 'react-resizable-panels';
 import {
   Database, Play, RefreshCw, ChevronDown, ChevronRight,
   Table, KeyRound, Type, Plug, Zap, X, Copy,
@@ -223,13 +222,6 @@ export function DatabaseManagerTool() {
     navigator.clipboard.writeText(`${header}\n${rows}`);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      e.preventDefault();
-      handleExecute();
-    }
-  };
-
   // Build schema for SQL autocomplete: { tableName: [col1, col2, ...] }
   const sqlSchema = useMemo(() => {
     const schema: Record<string, string[]> = {};
@@ -415,170 +407,161 @@ export function DatabaseManagerTool() {
 
       {/* Main Area */}
       <div className={styles.mainArea}>
-        <PanelGroup orientation="horizontal">
-          {/* Schema Panel */}
-          <Panel defaultSize={25} minSize={15} maxSize={40}>
-            <div className={isConnected ? styles.schemaPanel : styles.schemaPanelEmpty}>
-              <div className={styles.schemaHeader}>
-                <span className={styles.schemaHeaderLabel}>// SCHEMA</span>
-                {isConnected && (
-                  <button className={styles.refreshBtn} onClick={handleRefreshSchema} title="Refresh schema">
-                    <RefreshCw size={12} />
+        {/* Schema Panel */}
+        <div className={isConnected ? styles.schemaPanel : styles.schemaPanelEmpty}>
+          <div className={styles.schemaHeader}>
+            <span className={styles.schemaHeaderLabel}>// SCHEMA</span>
+            {isConnected && (
+              <button className={styles.refreshBtn} onClick={handleRefreshSchema} title="Refresh schema">
+                <RefreshCw size={12} />
+              </button>
+            )}
+          </div>
+
+          {isConnected ? (
+            <div className={styles.schemaTree}>
+              <div className={styles.treeNodeDb}>
+                <ChevronDown size={12} className={styles.treeIconAccent} />
+                <Database size={14} className={styles.treeIconAccent} />
+                <span>{database || 'database'}</span>
+              </div>
+
+              {tables.map(tbl => (
+                <div key={tbl.name}>
+                  <div
+                    className={styles.treeNodeTable}
+                    onClick={() => handleToggleTable(tbl.name)}
+                  >
+                    {expandedTables.has(tbl.name) ? (
+                      <ChevronDown size={12} className={styles.treeIcon} />
+                    ) : (
+                      <ChevronRight size={12} className={styles.treeIcon} />
+                    )}
+                    <Table size={14} className={styles.treeIcon} />
+                    <span>{tbl.name}</span>
+                    {tableColumns[tbl.name] && (
+                      <span className={styles.treeMeta}>
+                        ({tableColumns[tbl.name].length} cols)
+                      </span>
+                    )}
+                  </div>
+
+                  {expandedTables.has(tbl.name) && tableColumns[tbl.name]?.map(col => (
+                    <div key={col.name} className={styles.treeNodeColumn}>
+                      {col.is_primary_key ? (
+                        <KeyRound size={11} className={styles.treeIconAccent} />
+                      ) : (
+                        <Type size={11} className={styles.treeIcon} />
+                      )}
+                      <span>{col.name}</span>
+                      <span className={styles.treeMeta}>{col.data_type}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+
+              {tables.length === 0 && (
+                <div className={styles.emptyText}>No tables found</div>
+              )}
+            </div>
+          ) : (
+            <div className={styles.emptyText}>Connect to browse schema</div>
+          )}
+        </div>
+
+        {/* Right Panel */}
+        <div className={styles.rightPanel}>
+          {/* Query Editor */}
+          <div className={styles.queryPanel}>
+            <div className={styles.queryHeader}>
+              <span className={styles.schemaHeaderLabel}>// QUERY</span>
+              <div className={styles.queryActions}>
+                <button
+                  className={styles.btnExecute}
+                  onClick={handleExecute}
+                  disabled={!isConnected || isExecuting || !query.trim()}
+                >
+                  <Play size={12} />
+                  {isExecuting ? 'RUNNING...' : 'EXECUTE'}
+                </button>
+              </div>
+            </div>
+            <SqlEditor
+              value={query}
+              onChange={setQuery}
+              onExecute={handleExecute}
+              schema={sqlSchema}
+              dialect={dbType}
+              placeholder="SELECT * FROM users LIMIT 100;"
+            />
+          </div>
+
+          {/* Results Panel */}
+          <div className={styles.resultsPanel}>
+            <div className={styles.resultsHeader}>
+              <div className={styles.resultsLeft}>
+                <span className={styles.schemaHeaderLabel}>// RESULTS</span>
+                {results && (
+                  <>
+                    <span className={styles.badge}>
+                      {results.row_count > 0
+                        ? `${results.row_count} row${results.row_count !== 1 ? 's' : ''}`
+                        : `${results.affected_rows} affected`}
+                    </span>
+                    <span className={styles.badgeMuted}>{results.execution_time_ms}ms</span>
+                  </>
+                )}
+              </div>
+              <div className={styles.resultsRight}>
+                {results && results.rows.length > 0 && (
+                  <button className={styles.btnSecondary} onClick={handleCopyResults}>
+                    <Copy size={12} />
+                    COPY
                   </button>
                 )}
               </div>
+            </div>
 
-              {isConnected ? (
-                <div className={styles.schemaTree}>
-                  <div className={styles.treeNodeDb}>
-                    <ChevronDown size={12} className={styles.treeIconAccent} />
-                    <Database size={14} className={styles.treeIconAccent} />
-                    <span>{database || 'database'}</span>
-                  </div>
+            {queryError && <div className={styles.errorText}>{queryError}</div>}
 
-                  {tables.map(tbl => (
-                    <div key={tbl.name}>
-                      <div
-                        className={styles.treeNodeTable}
-                        onClick={() => handleToggleTable(tbl.name)}
-                      >
-                        {expandedTables.has(tbl.name) ? (
-                          <ChevronDown size={12} className={styles.treeIcon} />
-                        ) : (
-                          <ChevronRight size={12} className={styles.treeIcon} />
-                        )}
-                        <Table size={14} className={styles.treeIcon} />
-                        <span>{tbl.name}</span>
-                        {tableColumns[tbl.name] && (
-                          <span className={styles.treeMeta}>
-                            ({tableColumns[tbl.name].length} cols)
-                          </span>
-                        )}
-                      </div>
-
-                      {expandedTables.has(tbl.name) && tableColumns[tbl.name]?.map(col => (
-                        <div key={col.name} className={styles.treeNodeColumn}>
-                          {col.is_primary_key ? (
-                            <KeyRound size={11} className={styles.treeIconAccent} />
-                          ) : (
-                            <Type size={11} className={styles.treeIcon} />
-                          )}
-                          <span>{col.name}</span>
-                          <span className={styles.treeMeta}>{col.data_type}</span>
-                        </div>
+            {results && results.columns.length > 0 && (
+              <div className={styles.tableWrapper}>
+                <table className={styles.resultsTable}>
+                  <thead>
+                    <tr>
+                      {results.columns.map((col, i) => (
+                        <th key={i}>{col.toUpperCase()}</th>
                       ))}
-                    </div>
-                  ))}
-
-                  {tables.length === 0 && (
-                    <div className={styles.emptyText}>No tables found</div>
-                  )}
-                </div>
-              ) : (
-                <div className={styles.emptyText}>Connect to browse schema</div>
-              )}
-            </div>
-          </Panel>
-
-          {/* Resize Handle */}
-          <PanelResizeHandle className={styles.panelResizeHandle} />
-
-          {/* Right Panel */}
-          <Panel defaultSize={75} minSize={40}>
-            <div className={styles.rightPanel}>
-              {/* Query Editor */}
-              <div className={styles.queryPanel}>
-                <div className={styles.queryHeader}>
-                  <span className={styles.schemaHeaderLabel}>// QUERY</span>
-                  <div className={styles.queryActions}>
-                    <button
-                      className={styles.btnExecute}
-                      onClick={handleExecute}
-                      disabled={!isConnected || isExecuting || !query.trim()}
-                    >
-                      <Play size={12} />
-                      {isExecuting ? 'RUNNING...' : 'EXECUTE'}
-                    </button>
-                  </div>
-                </div>
-                <SqlEditor
-                  value={query}
-                  onChange={setQuery}
-                  onExecute={handleExecute}
-                  schema={sqlSchema}
-                  dialect={dbType}
-                  placeholder="SELECT * FROM users LIMIT 100;"
-                />
-              </div>
-
-              {/* Results Panel */}
-              <div className={styles.resultsPanel}>
-                <div className={styles.resultsHeader}>
-                  <div className={styles.resultsLeft}>
-                    <span className={styles.schemaHeaderLabel}>// RESULTS</span>
-                    {results && (
-                      <>
-                        <span className={styles.badge}>
-                          {results.row_count > 0
-                            ? `${results.row_count} row${results.row_count !== 1 ? 's' : ''}`
-                            : `${results.affected_rows} affected`}
-                        </span>
-                        <span className={styles.badgeMuted}>{results.execution_time_ms}ms</span>
-                      </>
-                    )}
-                  </div>
-                  <div className={styles.resultsRight}>
-                    {results && results.rows.length > 0 && (
-                      <button className={styles.btnSecondary} onClick={handleCopyResults}>
-                        <Copy size={12} />
-                        COPY
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                {queryError && <div className={styles.errorText}>{queryError}</div>}
-
-                {results && results.columns.length > 0 && (
-                  <div className={styles.tableWrapper}>
-                    <table className={styles.resultsTable}>
-                      <thead>
-                        <tr>
-                          {results.columns.map((col, i) => (
-                            <th key={i}>{col.toUpperCase()}</th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {results.rows.map((row, ri) => (
-                          <tr key={ri}>
-                            {row.map((val, ci) => (
-                              <td key={ci} className={ci === 0 ? styles.cellId : val === null ? styles.cellNull : undefined}>
-                                {val ?? 'NULL'}
-                              </td>
-                            ))}
-                          </tr>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {results.rows.map((row, ri) => (
+                      <tr key={ri}>
+                        {row.map((val, ci) => (
+                          <td key={ci} className={ci === 0 ? styles.cellId : val === null ? styles.cellNull : undefined}>
+                            {val ?? 'NULL'}
+                          </td>
                         ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-
-                {results && results.columns.length === 0 && !queryError && (
-                  <div className={styles.successText}>
-                    Query executed successfully. {results.affected_rows} row(s) affected.
-                  </div>
-                )}
-
-                {!results && !queryError && (
-                  <div className={styles.emptyText}>
-                    Execute a query to see results
-                  </div>
-                )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
-          </Panel>
-        </PanelGroup>
+            )}
+
+            {results && results.columns.length === 0 && !queryError && (
+              <div className={styles.successText}>
+                Query executed successfully. {results.affected_rows} row(s) affected.
+              </div>
+            )}
+
+            {!results && !queryError && (
+              <div className={styles.emptyText}>
+                Execute a query to see results
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Status Bar */}

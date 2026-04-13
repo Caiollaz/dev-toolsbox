@@ -536,6 +536,128 @@
   height: 12px;
 }
 
+/* OTP Prompt Modal */
+.otpOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.otpModal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-card, #0A0A0A);
+  border: 1px solid var(--accent-border, #00FF8840);
+  padding: 24px;
+  min-width: 340px;
+  max-width: 400px;
+}
+
+.otpHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.otpHeader svg {
+  width: 16px;
+  height: 16px;
+}
+
+.otpDesc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.otpInputRow {
+  display: flex;
+}
+
+.otpInput {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--bg-primary, #0C0C0C);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.otpInput:focus {
+  border-color: var(--accent);
+}
+
+.otpInput::placeholder {
+  color: var(--text-muted);
+  letter-spacing: 6px;
+  font-weight: 400;
+}
+
+.otpActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.otpBtnCancel {
+  padding: 8px 16px;
+  background: var(--bg-primary, #0C0C0C);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.otpBtnCancel:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.otpBtnConfirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: var(--accent);
+  border: none;
+  color: var(--bg-primary, #0C0C0C);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.otpBtnConfirm:hover {
+  opacity: 0.9;
+}
+
+.otpBtnConfirm svg {
+  width: 14px;
+  height: 14px;
+}
+
 /* Status Bar */
 .statusBar {
   display: flex;

@@ -194,20 +194,20 @@
 /* Main Area */
 .mainArea {
   display: flex;
-  gap: 0;
-  flex: 1;
-  min-height: 0;
+  gap: 16px;
 }
 
 /* Schema Panel */
 .schemaPanel {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  min-height: 0;
+  width: 280px;
+  min-width: 220px;
+  max-width: 360px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   overflow: hidden;
+  max-height: 520px;
 }
 
 .schemaPanelEmpty {
@@ -320,16 +320,9 @@
 .rightPanel {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   gap: 16px;
   min-width: 0;
-  min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.rightPanel::-webkit-scrollbar {
-  display: none;
 }
 
 /* Query Panel */
@@ -761,30 +754,3 @@
   text-overflow: ellipsis;
 }
 
-/* Panel Resize Handle (react-resizable-panels) */
-.panelResizeHandle {
-  width: 4px;
-  background: transparent;
-  position: relative;
-  transition: background 0.15s;
-  outline: none;
-}
-
-.panelResizeHandle::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 2px;
-  height: 32px;
-  background: var(--border);
-  border-radius: 1px;
-  transition: background 0.15s, height 0.15s;
-}
-
-.panelResizeHandle:hover::after,
-.panelResizeHandle[data-resize-handle-active]::after {
-  background: var(--accent);
-  height: 48px;
-}
