@@ -1,0 +1,14 @@
+.sqlEditor {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sqlEditor .cm-editor {
+  height: 100%;
+}
+
+.sqlEditor .cm-scroller {
+  overflow: auto;
+}

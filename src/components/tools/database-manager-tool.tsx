@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Group as PanelGroup, Panel, Separator as PanelResizeHandle } from 'react-resizable-panels';
 import {
   Database, Play, RefreshCw, ChevronDown, ChevronRight,
@@ -16,6 +16,7 @@ import type {
   DbType, DbConfig, SavedConnection,
   DbQueryResult, DbTableInfo, DbColumnInfo,
 } from '../../services/database-manager.service';
+import { SqlEditor } from '../shared/sql-editor';
 import styles from './database-manager-tool.module.css';
 
 const DB_TYPE_LABELS: Record<DbType, string> = {
@@ -102,6 +103,20 @@ export function DatabaseManagerTool() {
       setConnectionId(id);
       const tbls = await dbListTables(id);
       setTables(tbls);
+
+      // Pre-load all columns for autocomplete schema
+      const colMap: Record<string, DbColumnInfo[]> = {};
+      await Promise.all(
+        tbls.map(async (tbl) => {
+          try {
+            const cols = await dbDescribeTable(id, tbl.name);
+            colMap[tbl.name] = cols;
+          } catch {
+            // ignore individual table errors
+          }
+        }),
+      );
+      setTableColumns(colMap);
     } catch (err) {
       setConnectionError(String(err));
     } finally {
@@ -214,6 +229,16 @@ export function DatabaseManagerTool() {
       handleExecute();
     }
   };
+
+  // Build schema for SQL autocomplete: { tableName: [col1, col2, ...] }
+  const sqlSchema = useMemo(() => {
+    const schema: Record<string, string[]> = {};
+    for (const tbl of tables) {
+      const cols = tableColumns[tbl.name];
+      schema[tbl.name] = cols ? cols.map((c) => c.name) : [];
+    }
+    return schema;
+  }, [tables, tableColumns]);
 
   const formatConnString = (config: DbConfig): string => {
     if (config.db_type === 'sqlite') return config.database;
@@ -476,13 +501,13 @@ export function DatabaseManagerTool() {
                     </button>
                   </div>
                 </div>
-                <textarea
-                  className={styles.queryEditor}
+                <SqlEditor
                   value={query}
-                  onChange={e => setQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
+                  onChange={setQuery}
+                  onExecute={handleExecute}
+                  schema={sqlSchema}
+                  dialect={dbType}
                   placeholder="SELECT * FROM users LIMIT 100;"
-                  spellCheck={false}
                 />
               </div>
 

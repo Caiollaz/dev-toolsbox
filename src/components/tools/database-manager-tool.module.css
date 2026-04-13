@@ -339,7 +339,8 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   min-height: 140px;
-  flex-shrink: 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .queryHeader {
@@ -394,21 +395,6 @@
 
 .btnSecondary:hover {
   color: var(--text-primary);
-}
-
-.queryEditor {
-  flex: 1;
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.8;
-  padding: 16px;
-  resize: none;
-  outline: none;
-  min-height: 80px;
 }
 
 .queryEditor::placeholder {
