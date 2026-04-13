@@ -13,6 +13,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -36,16 +39,14 @@ jobs:
 
       - name: Create Release
         id: create
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: DEXT ${{ steps.tag.outputs.tag }}
+          name: DEXT ${{ steps.tag.outputs.tag }}
           body: |
             ## DEXT ${{ steps.tag.outputs.tag }}
 
-            Local-first developer tools — 17 tools, 6 categories, all offline, zero backend.
+            Local-first developer tools — 25 tools, 7 categories, all offline, zero backend.
 
             ### Downloads
 
@@ -71,7 +72,9 @@ jobs:
 
             **Text** — Regex Tester, Markdown Preview
 
-            **DevOps** — HTTP Runner (desktop only), ENV Manager
+            **Network** — Port Scanner, DNS Lookup, SSL Inspector, WebSocket Tester, OpenVPN Manager
+
+            **DevOps** — HTTP Runner, ENV Manager, Docker Dashboard, Log Tail Viewer, Database Manager
 
             ---
             Built with Tauri v2 + React + TypeScript
@@ -130,7 +133,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install Rust stable
