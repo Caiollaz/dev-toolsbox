@@ -25,7 +25,7 @@ export function isTauriEnvironment(): boolean {
 
 async function getTauriInvoke(): Promise<typeof import('@tauri-apps/api/core').invoke | null> {
   try {
-    const mod = await (Function('m', 'return import(m)') as (m: string) => Promise<typeof import('@tauri-apps/api/core')>)('@tauri-apps/api/core');
+    const mod = await import('@tauri-apps/api/core');
     return mod.invoke;
   } catch {
     return null;
@@ -34,7 +34,7 @@ async function getTauriInvoke(): Promise<typeof import('@tauri-apps/api/core').i
 
 export async function getTauriEventApi(): Promise<typeof import('@tauri-apps/api/event') | null> {
   try {
-    const mod = await (Function('m', 'return import(m)') as (m: string) => Promise<typeof import('@tauri-apps/api/event')>)('@tauri-apps/api/event');
+    const mod = await import('@tauri-apps/api/event');
     return mod;
   } catch {
     return null;
