@@ -38,6 +38,13 @@ pub fn run() {
             commands::database_manager::db_list_databases,
             commands::database_manager::db_list_tables,
             commands::database_manager::db_describe_table,
+            // OpenVPN Manager
+            commands::openvpn_manager::ovpn_connect,
+            commands::openvpn_manager::ovpn_disconnect,
+            commands::openvpn_manager::ovpn_status,
+            commands::openvpn_manager::ovpn_get_logs,
+            commands::openvpn_manager::ovpn_watch_start,
+            commands::openvpn_manager::ovpn_watch_stop,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

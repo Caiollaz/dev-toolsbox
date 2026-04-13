@@ -1,0 +1,567 @@
+/* OpenVPN Manager Tool */
+
+.desktopOnly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 100%;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: center;
+}
+
+.desktopOnly svg {
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+/* Connection Bar */
+.connectionBar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.vpnBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bg-primary);
+  white-space: nowrap;
+}
+
+.vpnBadge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.profileInput {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  outline: none;
+  min-width: 0;
+}
+
+.profileInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.btnAction {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btnAction:hover {
+  background: var(--bg-surface, #141414);
+}
+
+.btnAction svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btnConnect {
+  background: var(--accent);
+  color: var(--bg-primary);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.btnConnect:hover {
+  opacity: 0.9;
+}
+
+.btnDisconnect {
+  background: var(--color-error, #FF4444);
+  color: #fff;
+  border-color: var(--color-error, #FF4444);
+  font-weight: 700;
+}
+
+.btnDisconnect:hover {
+  opacity: 0.9;
+}
+
+/* Credential Fields */
+.fieldsRow {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.fieldLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.fieldInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fieldInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.fieldInput svg {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  width: 14px;
+  height: 14px;
+}
+
+.fieldInputText {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-primary);
+  padding: 0;
+  min-width: 0;
+}
+
+.fieldInputText::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Main Area */
+.mainArea {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Status Panel */
+.statusPanel {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  min-width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.statusHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.statusLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.statusDot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+}
+
+.dotConnected {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow, #00FF8866);
+}
+
+.dotError {
+  background: var(--color-error, #FF4444);
+  box-shadow: 0 0 10px #FF444466;
+}
+
+.dotConnecting {
+  background: var(--color-warning, #FF8800);
+  box-shadow: 0 0 10px #FF880066;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.statusDotText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.statusRow:last-child {
+  border-bottom: none;
+}
+
+.statusKey {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.statusValue {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.statusValueAccent {
+  color: var(--accent);
+}
+
+/* Logs Panel */
+.logsPanel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.logsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logsHeaderLeft {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.logsHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.liveBadge {
+  padding: 3px 8px;
+  background: var(--accent-badge, #00FF8820);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.btnClear {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btnClear:hover {
+  background: var(--bg-surface, #141414);
+}
+
+.btnClear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.logsBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  flex: 1;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.logLine {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.logLineSuccess {
+  color: var(--accent);
+}
+
+.logLineError {
+  color: var(--color-error, #FF4444);
+}
+
+.logLineWarn {
+  color: var(--color-warning, #FF8800);
+}
+
+.logsEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* Saved Profiles Section */
+.savedSection {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  width: 100%;
+  overflow: hidden;
+}
+
+.savedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.savedHeader:hover {
+  background: var(--bg-surface, #141414);
+}
+
+.savedHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.savedHeaderLeft svg {
+  color: var(--text-secondary);
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.savedChevronOpen svg {
+  transform: rotate(0deg);
+}
+
+.savedChevronClosed svg {
+  transform: rotate(-90deg);
+}
+
+.savedLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.savedBadge {
+  padding: 3px 8px;
+  background: var(--accent-badge, #00FF8820);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.cardsRow {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  background: var(--bg-primary, #0C0C0C);
+  border: 1px solid var(--border);
+  min-width: 180px;
+  flex: 1;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  position: relative;
+}
+
+.profileCard:hover {
+  border-color: var(--text-secondary);
+}
+
+.profileCardActive {
+  border-left: 2px solid var(--accent);
+}
+
+.profileCardName {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.profileCardPath {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileCardUser {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.profileCardDelete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.profileCard:hover .profileCardDelete {
+  opacity: 1;
+}
+
+.profileCardDelete:hover {
+  color: var(--color-error, #FF4444);
+}
+
+.profileCardDelete svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Status Bar */
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border, #00FF8840);
+  width: 100%;
+}
+
+.statusBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusBarText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.statusBarTag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}

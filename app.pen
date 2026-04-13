@@ -22038,6 +22038,1219 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "0wu44",
+      "x": 39453,
+      "y": 0,
+      "name": "Dext — OpenVPN Manager",
+      "width": 1440,
+      "height": 900,
+      "fill": "$bg-main",
+      "children": [
+        {
+          "id": "kH1Qs",
+          "type": "ref",
+          "ref": "ZGSyG",
+          "height": "fill_container",
+          "name": "sidebar"
+        },
+        {
+          "type": "frame",
+          "id": "sYV4h",
+          "name": "Content",
+          "clip": true,
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "P6c6b",
+              "name": "Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "v94N7",
+                  "name": "hlabel",
+                  "fill": "$accent",
+                  "content": "// TOOL_25",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "8FBCV",
+                  "name": "htitle",
+                  "fill": "$text-primary",
+                  "content": "OPENVPN MANAGER",
+                  "fontFamily": "Space Grotesk",
+                  "fontSize": 36,
+                  "fontWeight": "700",
+                  "letterSpacing": -1
+                },
+                {
+                  "type": "text",
+                  "id": "982Ed",
+                  "name": "hsub",
+                  "fill": "$text-secondary",
+                  "content": "Connect to OpenVPN servers — manage sessions with username, password and OTP",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "6TEeI",
+              "name": "Connection Bar",
+              "width": "fill_container",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OmjIL",
+                  "name": "VPN Badge",
+                  "fill": "$accent",
+                  "gap": 6,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "ZMkqJ",
+                      "name": "vpnIcon",
+                      "width": 14,
+                      "height": 14,
+                      "iconFontName": "shield-alert",
+                      "iconFontFamily": "lucide",
+                      "fill": "$bg-main"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CYYDW",
+                      "name": "vpnLabel",
+                      "fill": "$bg-main",
+                      "content": "OPENVPN",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "4ZvVt",
+                  "name": "Profile Path",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1,
+                      "bottom": 1
+                    },
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "odeSG",
+                      "name": "profileText",
+                      "fill": "$text-secondary",
+                      "content": "/home/user/vpn/company.ovpn",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "6V54n",
+                  "name": "Actions",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "DpO1F",
+                      "type": "ref",
+                      "ref": "34FdS",
+                      "name": "btnBrowse",
+                      "descendants": {
+                        "jc6Xu": {
+                          "iconFontName": "folder-open"
+                        },
+                        "ZAJp0": {
+                          "content": "BROWSE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "dbxzQ",
+                      "type": "ref",
+                      "ref": "34FdS",
+                      "name": "btnSave",
+                      "descendants": {
+                        "jc6Xu": {
+                          "iconFontName": "bookmark"
+                        },
+                        "ZAJp0": {
+                          "content": "SAVE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "Evn7a",
+                      "type": "ref",
+                      "ref": "Kajo3",
+                      "name": "btnConnect",
+                      "descendants": {
+                        "H8GUi": {
+                          "iconFontName": "plug"
+                        },
+                        "WF66m": {
+                          "content": "CONNECT"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GMKAu",
+              "name": "Credential Fields",
+              "width": "fill_container",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "mhrws",
+                  "name": "Username Field",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "s5W5D",
+                      "name": "userLabel",
+                      "fill": "$accent",
+                      "content": "// USERNAME",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 9,
+                      "fontWeight": "500",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "P6pix",
+                      "name": "input",
+                      "width": "fill_container",
+                      "fill": "$bg-card",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "bC3DB",
+                          "name": "userIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "user",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "wo2Jr",
+                          "name": "userText",
+                          "fill": "$text-primary",
+                          "content": "john.doe",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nsNzO",
+                  "name": "Password Field",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "67iH7",
+                      "name": "passLabel",
+                      "fill": "$accent",
+                      "content": "// PASSWORD",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 9,
+                      "fontWeight": "500",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DLedj",
+                      "name": "input",
+                      "width": "fill_container",
+                      "fill": "$bg-card",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "SI0Qf",
+                          "name": "passIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "lock",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "B8aL8",
+                          "name": "passText",
+                          "fill": "$text-primary",
+                          "content": "••••••••••",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "k7UVW",
+                  "name": "OTP Field",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iurvs",
+                      "name": "otpLabel",
+                      "fill": "$accent",
+                      "content": "// SECURITY CODE",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 9,
+                      "fontWeight": "500",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CfPFE",
+                      "name": "input",
+                      "width": "fill_container",
+                      "fill": "$bg-card",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "9KEFr",
+                          "name": "otpIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "shield-check",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "iQOK7",
+                          "name": "otpText",
+                          "fill": "$accent",
+                          "content": "483 291",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vPNCe",
+              "name": "Main Area",
+              "width": "fill_container",
+              "height": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "5vxP9",
+                  "name": "Status Panel",
+                  "clip": true,
+                  "width": 320,
+                  "height": "fill_container",
+                  "fill": "$bg-card",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "h59H9",
+                      "name": "Status Header",
+                      "width": "fill_container",
+                      "stroke": {
+                        "thickness": {
+                          "bottom": 1
+                        },
+                        "fill": "$border"
+                      },
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Dc5Qr",
+                          "name": "statusLabel",
+                          "fill": "$accent",
+                          "content": "// STATUS",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "500",
+                          "letterSpacing": 1
+                        },
+                        {
+                          "id": "AQzla",
+                          "type": "ref",
+                          "ref": "zajhg",
+                          "name": "statusDot",
+                          "descendants": {
+                            "4fbVs": {
+                              "content": "CONNECTED"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sHwox",
+                      "name": "Status Body",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "dJVVR",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kSiwU",
+                              "name": "k1",
+                              "fill": "$text-secondary",
+                              "content": "Server",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bIWk6",
+                              "name": "v1",
+                              "fill": "$text-primary",
+                              "content": "vpn.company.com",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Iul4G",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ue8cz",
+                              "name": "k2",
+                              "fill": "$text-secondary",
+                              "content": "Local IP",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "yS8ZM",
+                              "name": "v2",
+                              "fill": "$accent",
+                              "content": "10.8.0.5",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "9gl1F",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "GaGkQ",
+                              "name": "k3",
+                              "fill": "$text-secondary",
+                              "content": "Remote IP",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "rkPN5",
+                              "name": "v3",
+                              "fill": "$text-primary",
+                              "content": "203.0.113.42",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "7EBta",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hrUHD",
+                              "name": "k4",
+                              "fill": "$text-secondary",
+                              "content": "Uptime",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t4VSS",
+                              "name": "v4",
+                              "fill": "$text-primary",
+                              "content": "2h 34m 12s",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "pVlWh",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fqZxp",
+                              "name": "k5",
+                              "fill": "$text-secondary",
+                              "content": "Bytes Sent",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Qttnm",
+                              "name": "v5",
+                              "fill": "$text-primary",
+                              "content": "12.4 MB",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "A5nnJ",
+                          "name": "row",
+                          "width": "fill_container",
+                          "stroke": {
+                            "thickness": {
+                              "bottom": 1
+                            },
+                            "fill": "$border"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "61zAc",
+                              "name": "k6",
+                              "fill": "$text-secondary",
+                              "content": "Bytes Received",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Y9vaW",
+                              "name": "v6",
+                              "fill": "$text-primary",
+                              "content": "89.2 MB",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GhC95",
+                          "name": "row",
+                          "width": "fill_container",
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Kr6yo",
+                              "name": "k7",
+                              "fill": "$text-secondary",
+                              "content": "Protocol",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "eEz69",
+                              "name": "v7",
+                              "fill": "$text-primary",
+                              "content": "UDP",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Jw2dR",
+                  "name": "Logs Panel",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$bg-card",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "6xpzR",
+                      "name": "Logs Header",
+                      "width": "fill_container",
+                      "stroke": {
+                        "thickness": {
+                          "bottom": 1
+                        },
+                        "fill": "$border"
+                      },
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "1oMcX",
+                          "name": "logsLabel",
+                          "fill": "$accent",
+                          "content": "// LOGS",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "500",
+                          "letterSpacing": 1
+                        },
+                        {
+                          "type": "frame",
+                          "id": "O0C8H",
+                          "name": "actions",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "id": "3N7rP",
+                              "type": "ref",
+                              "ref": "BFJwI",
+                              "name": "filterBadge",
+                              "descendants": {
+                                "YOtNE": {
+                                  "content": "LIVE"
+                                }
+                              }
+                            },
+                            {
+                              "id": "RugaX",
+                              "type": "ref",
+                              "ref": "34FdS",
+                              "padding": [
+                                6,
+                                12
+                              ],
+                              "name": "btnClear",
+                              "descendants": {
+                                "jc6Xu": {
+                                  "iconFontName": "trash-2",
+                                  "width": 12,
+                                  "height": 12
+                                },
+                                "ZAJp0": {
+                                  "content": "CLEAR",
+                                  "fontSize": 9
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "o55iV",
+                      "name": "Logs Body",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fEqDh",
+                          "name": "log1",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:01] OpenVPN 2.6.19 started",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "9mm2J",
+                          "name": "log2",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:01] TCP/UDP: Preserving recently used remote address",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OmHJy",
+                          "name": "log3",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:02] UDP link remote: [AF_INET]203.0.113.42:1194",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "3pZT6",
+                          "name": "log4",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:03] TLS: Initial packet from [AF_INET]203.0.113.42:1194",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VfT3K",
+                          "name": "log5",
+                          "fill": "$accent",
+                          "content": "[10:24:04] VERIFY OK: depth=1, CN=VPN-CA",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "JuB5i",
+                          "name": "log6",
+                          "fill": "$accent",
+                          "content": "[10:24:04] VERIFY OK: depth=0, CN=vpn.company.com",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "C45Iq",
+                          "name": "log7",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:05] Control Channel: TLSv1.3, cipher TLS_AES_256_GCM_SHA384",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VRz3s",
+                          "name": "log8",
+                          "fill": "$accent",
+                          "content": "[10:24:05] [vpn.company.com] Peer Connection Initiated",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "TDKFI",
+                          "name": "log9",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:06] net_iface_up: set tun0 up",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nBDDE",
+                          "name": "log10",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:06] net_addr_v4_add: 10.8.0.5/24 dev tun0",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "al2cJ",
+                          "name": "log11",
+                          "fill": "$text-secondary",
+                          "content": "[10:24:06] net_route_v4_add: 10.8.0.0/24 via 10.8.0.1 dev tun0",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "wlaZp",
+                          "name": "log12",
+                          "fill": "$accent",
+                          "content": "[10:24:07] Initialization Sequence Completed",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 10,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ORwim",
+              "name": "Saved Profiles",
+              "clip": true,
+              "width": "fill_container",
+              "fill": "$bg-card",
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "khTsJ",
+                  "name": "Header",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "bottom": 1
+                    },
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JbZT4",
+                      "name": "left",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "Zo5AD",
+                          "name": "savedChevron",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "chevron-down",
+                          "iconFontFamily": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "TbzfZ",
+                          "name": "savedLabel",
+                          "fill": "$accent",
+                          "content": "// SAVED_PROFILES",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "500",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "id": "q7Wmn",
+                      "type": "ref",
+                      "ref": "BFJwI",
+                      "name": "savedBadge",
+                      "descendants": {
+                        "YOtNE": {
+                          "content": "3"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "0Y0dQ",
+                  "name": "Cards Row",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "CovKo",
+                      "name": "Profile Card",
+                      "width": "fill_container",
+                      "fill": "$bg-main",
+                      "stroke": {
+                        "thickness": {
+                          "left": 2
+                        },
+                        "fill": "$accent"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "OTe96",
+                          "name": "c1name",
+                          "fill": "$text-primary",
+                          "content": "Work VPN",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "x56yo",
+                          "name": "c1path",
+                          "fill": "$text-secondary",
+                          "content": "/home/user/vpn/company.ovpn",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "uvAm2",
+                          "name": "c1user",
+                          "fill": "$text-muted",
+                          "content": "john.doe",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h7qFa",
+                      "name": "Profile Card",
+                      "width": "fill_container",
+                      "fill": "$bg-main",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "j25eI",
+                          "name": "c2name",
+                          "fill": "$text-primary",
+                          "content": "Home Server",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "TPiPj",
+                          "name": "c2path",
+                          "fill": "$text-secondary",
+                          "content": "/home/user/vpn/home.ovpn",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GM4Ef",
+                          "name": "c2user",
+                          "fill": "$text-muted",
+                          "content": "admin",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HiUCI",
+                      "name": "Profile Card",
+                      "width": "fill_container",
+                      "fill": "$bg-main",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Rn103",
+                          "name": "c3name",
+                          "fill": "$text-primary",
+                          "content": "Staging Env",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kkAW7",
+                          "name": "c3path",
+                          "fill": "$text-secondary",
+                          "content": "/home/user/vpn/staging.ovpn",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "r4Rhg",
+                          "name": "c3user",
+                          "fill": "$text-muted",
+                          "content": "deploy",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rIEiG",
+              "type": "ref",
+              "ref": "3x1Wa",
+              "name": "statusBar",
+              "descendants": {
+                "BoP2j": {
+                  "content": "CONNECTED — 10.8.0.5 via vpn.company.com"
+                },
+                "Acgq5": {
+                  "content": "OPENVPN_MGR"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "variables": {

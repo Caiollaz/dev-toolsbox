@@ -18,7 +18,7 @@ tauri-plugin-shell = "2"
 tauri-plugin-http = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1", features = ["net", "fs", "io-util", "time", "rt", "sync", "macros"] }
+tokio = { version = "1", features = ["net", "fs", "io-util", "time", "rt", "sync", "macros", "process"] }
 hickory-resolver = { version = "0.25", features = ["tokio"] }
 rustls = "0.23"
 x509-parser = "0.16"

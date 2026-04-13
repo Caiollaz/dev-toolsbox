@@ -22,7 +22,8 @@ export type ToolType =
   | 'websocket-tester'
   | 'docker-dashboard'
   | 'log-tail-viewer'
-  | 'database-manager';
+  | 'database-manager'
+  | 'openvpn-manager';
 
 export type ToolGroupId =
   | 'encode-decode'
@@ -238,5 +239,12 @@ export const TOOLS: ToolConfig[] = [
     icon: 'cylinder',
     description: 'Connect to PostgreSQL, MySQL and SQLite databases, run queries and browse schemas (desktop only)',
     group: 'devops',
+  },
+  {
+    id: 'openvpn-manager',
+    label: 'OPENVPN',
+    icon: 'shield-alert',
+    description: 'Connect to OpenVPN servers — manage sessions with username, password and OTP (desktop only)',
+    group: 'network',
   },
 ];

@@ -4,3 +4,4 @@ pub mod ssl_inspector;
 pub mod docker_manager;
 pub mod log_watcher;
 pub mod database_manager;
+pub mod openvpn_manager;
