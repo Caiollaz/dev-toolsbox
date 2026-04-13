@@ -75,7 +75,7 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="https://github.com/Caiollaz/dext/releases" target="_blank" rel="noopener" class="btn-primary">
+      <a href="#download" class="btn-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         DOWNLOAD FOR FREE
       </a>
@@ -385,23 +385,86 @@
     <h2 class="cta-title">Ready to simplify<br>your workflow?</h2>
     <p class="cta-sub">Download DEXT for free. Available on all platforms.</p>
 
-    <div class="cta-buttons">
-      <a href="https://github.com/Caiollaz/dext/releases" target="_blank" rel="noopener" class="btn-primary cta-btn-main">
-        <span class="btn-icon-arrow">&#8595;</span>
-        Download for Windows
-      </a>
-      <a href="https://github.com/Caiollaz/dext/releases" target="_blank" rel="noopener" class="btn-secondary cta-btn">
-        <span class="btn-icon-arrow">&#8595;</span>
-        macOS
-      </a>
-      <a href="https://github.com/Caiollaz/dext/releases" target="_blank" rel="noopener" class="btn-secondary cta-btn">
-        <span class="btn-icon-arrow">&#8595;</span>
-        Linux
-      </a>
+    <div class="download-card">
+      <div class="download-tabs">
+        <button class="download-tab active" data-tab="windows">Windows</button>
+        <button class="download-tab" data-tab="macos">macOS</button>
+        <button class="download-tab" data-tab="linux">Linux</button>
+      </div>
+
+      <!-- Windows -->
+      <div class="download-panel active" id="panel-windows">
+        <span class="download-arch">Intel / AMD</span>
+        <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_x64-setup.exe" class="download-btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .exe
+        </a>
+        <span class="download-alt">or <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_x64_en-US.msi">download .msi installer</a></span>
+      </div>
+
+      <!-- macOS -->
+      <div class="download-panel" id="panel-macos">
+        <span class="download-arch">Apple Silicon</span>
+        <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_aarch64.dmg" class="download-btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .dmg (Apple Silicon)
+        </a>
+        <span class="download-alt">Intel Mac? <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_x64.dmg">Download x64 version</a></span>
+      </div>
+
+      <!-- Linux -->
+      <div class="download-panel" id="panel-linux">
+        <span class="download-arch">Install via terminal</span>
+        <div class="download-curl">
+          <code>curl -fsSL https://caiollaz.github.io/dext/install.sh | sh</code>
+          <button class="download-curl-copy" onclick="navigator.clipboard.writeText('curl -fsSL https://caiollaz.github.io/dext/install.sh | sh');this.textContent='COPIED';setTimeout(()=>this.textContent='COPY',2000)">COPY</button>
+        </div>
+        <div class="download-manual">
+          <span class="download-alt">or download manually:</span>
+          <div class="download-manual-links">
+            <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_amd64.deb">.deb</a>
+            <span class="download-manual-sep">/</span>
+            <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext_2.2.1_amd64.AppImage">.AppImage</a>
+            <span class="download-manual-sep">/</span>
+            <a href="https://github.com/Caiollaz/dext/releases/download/v2.2.1/Dext-2.2.1-1.x86_64.rpm">.rpm</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <span class="cta-version">v2.2.1 &middot; ~8MB &middot; MIT License</span>
   </section>
+
+  <!-- ========== OS DETECTION + TAB LOGIC ========== -->
+  <script>
+    (function() {
+      var ua = navigator.userAgent.toLowerCase();
+      var os = 'windows';
+      if (ua.indexOf('mac') !== -1) os = 'macos';
+      else if (ua.indexOf('linux') !== -1) os = 'linux';
+
+      // Activate detected OS tab
+      var tabs = document.querySelectorAll('.download-tab');
+      var panels = document.querySelectorAll('.download-panel');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      var activeTab = document.querySelector('[data-tab="' + os + '"]');
+      var activePanel = document.getElementById('panel-' + os);
+      if (activeTab) activeTab.classList.add('active');
+      if (activePanel) activePanel.classList.add('active');
+
+      // Tab click handlers
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          panels.forEach(function(p) { p.classList.remove('active'); });
+          tab.classList.add('active');
+          var panel = document.getElementById('panel-' + tab.dataset.tab);
+          if (panel) panel.classList.add('active');
+        });
+      });
+    })();
+  </script>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">

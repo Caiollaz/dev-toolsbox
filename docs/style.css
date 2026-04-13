@@ -679,25 +679,174 @@ a {
   text-align: center;
 }
 
-.cta-buttons {
+/* --- Download Card --- */
+.download-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.download-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.download-tab {
+  flex: 1;
+  padding: 14px 24px;
+  background: var(--bg-card);
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.download-tab:hover {
+  color: var(--text-primary);
+}
+
+.download-tab.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+/* --- Panels --- */
+.download-panel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+}
+
+.download-panel.active {
+  display: flex;
+}
+
+.download-arch {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.download-btn-primary {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.btn-icon-arrow {
-  font-size: 14px;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg-main);
+  padding: 16px 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   font-weight: 700;
+  transition: opacity 0.2s;
 }
 
-.cta-btn-main {
-  font-size: 13px;
+.download-btn-primary:hover {
+  opacity: 0.85;
+}
+
+.download-alt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.download-alt a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent-muted);
+  transition: text-decoration-color 0.2s;
+}
+
+.download-alt a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* --- Curl Block (Linux) --- */
+.download-curl {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+}
+
+.download-curl code {
+  flex: 1;
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.download-curl-copy {
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: color 0.2s;
+  flex-shrink: 0;
 }
 
-.cta-btn {
-  font-size: 13px;
+.download-curl-copy:hover {
+  color: var(--text-primary);
+}
+
+/* --- Manual Links (Linux) --- */
+.download-manual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-manual-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-manual-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 500;
+  color: var(--accent);
+  padding: 6px 12px;
+  border: 1px solid var(--accent-muted);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.download-manual-links a:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+}
+
+.download-manual-sep {
+  font-size: 11px;
+  color: var(--text-muted);
 }
 
 .cta-version {
@@ -799,6 +948,10 @@ a {
 
   .cta-title {
     font-size: 40px;
+  }
+
+  .download-card {
+    max-width: 100%;
   }
 
   .footer {
@@ -929,15 +1082,21 @@ a {
     font-size: 32px;
   }
 
-  .cta-buttons {
-    flex-direction: column;
-    width: 100%;
+  .download-card {
+    max-width: 100%;
   }
 
-  .cta-buttons .btn-primary,
-  .cta-buttons .btn-secondary {
-    width: 100%;
-    justify-content: center;
+  .download-tab {
+    font-size: 11px;
+    padding: 12px 16px;
+  }
+
+  .download-panel {
+    padding: 24px;
+  }
+
+  .download-curl code {
+    font-size: 9px;
   }
 
   /* Footer */
