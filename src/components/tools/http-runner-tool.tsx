@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Send, Trash2, Plus, Copy, Loader2, Braces, AlertTriangle } from 'lucide-react';
+import { Dropdown } from '../shared/dropdown';
 import {
   sendRequest,
   buildCurlCommand,
@@ -371,17 +372,13 @@ export function HttpRunnerTool() {
     <>
       {/* URL Bar */}
       <div className={styles.urlBar}>
-        <select
-          className={styles.methodSelect}
+        <Dropdown
+          options={HTTP_METHODS.map((m) => ({ value: m, label: m }))}
           value={config.method}
-          onChange={(e) => updateConfig('method', e.target.value as HttpMethod)}
-        >
-          {HTTP_METHODS.map((m) => (
-            <option key={m} value={m}>
-              {m}
-            </option>
-          ))}
-        </select>
+          onChange={(val) => updateConfig('method', val as HttpMethod)}
+          className={styles.methodSelect}
+          minWidth={100}
+        />
         <input
           type="text"
           className={styles.urlInput}

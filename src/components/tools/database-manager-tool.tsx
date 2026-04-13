@@ -4,6 +4,7 @@ import {
   Table, KeyRound, Type, Plug, Zap, X, Copy,
   Bookmark, Trash2,
 } from 'lucide-react';
+import { Dropdown } from '../shared/dropdown';
 import {
   isTauriEnvironment,
   dbTestConnection, dbConnect, dbDisconnect,
@@ -254,17 +255,18 @@ export function DatabaseManagerTool() {
       <div className={styles.connectionBar}>
         <div className={styles.dbTypeSelector}>
           <Database size={14} />
-          <select
-            className={styles.dbTypeSelect}
+          <Dropdown
+            options={[
+              { value: 'postgresql', label: 'PostgreSQL' },
+              { value: 'mysql', label: 'MySQL' },
+              { value: 'sqlite', label: 'SQLite' },
+            ]}
             value={dbType}
-            onChange={e => handleDbTypeChange(e.target.value as DbType)}
+            onChange={(val) => handleDbTypeChange(val as DbType)}
             disabled={isConnected}
-          >
-            <option value="postgresql">PostgreSQL</option>
-            <option value="mysql">MySQL</option>
-            <option value="sqlite">SQLite</option>
-          </select>
-          <ChevronDown size={12} className={styles.dbTypeChevron} />
+            className={styles.dbTypeDropdown}
+            accent={false}
+          />
         </div>
 
         <div className={styles.connectionFields}>

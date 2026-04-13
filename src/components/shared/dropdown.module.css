@@ -1,0 +1,122 @@
+/* ── Dropdown ───────────────────────────────────── */
+
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  outline: none;
+}
+
+.dropdown:focus-visible {
+  outline: none;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+
+.trigger:hover {
+  border-color: var(--border-light);
+}
+
+/* Accent variant — selected text is green */
+.accent .trigger {
+  color: var(--accent);
+}
+
+/* Open state */
+.open .trigger {
+  border-color: var(--accent-border);
+}
+
+.chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+/* Disabled */
+.disabled .trigger {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Menu ────────────────────────────────────────── */
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 4px 0;
+  z-index: 100;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Open upward */
+.menuUp {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
+/* ── Items ───────────────────────────────────────── */
+
+.item {
+  padding: 6px var(--spacing-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.item:hover,
+.itemFocused {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
+
+.itemActive {
+  color: var(--accent);
+}
+
+.itemActive:hover,
+.itemActive.itemFocused {
+  color: var(--accent);
+}

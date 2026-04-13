@@ -269,7 +269,7 @@ export function OpenVpnManagerTool() {
       <div className={styles.desktopOnly}>
         <ShieldAlert size={48} />
         <p>OpenVPN Manager requires the desktop app.</p>
-        <p>This tool uses systemctl to manage OpenVPN connections.</p>
+        <p>This tool uses openvpn3 to manage VPN connections.</p>
       </div>
     );
   }

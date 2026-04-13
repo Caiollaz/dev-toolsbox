@@ -26,22 +26,13 @@
 }
 
 .typeSelect {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: var(--spacing-sm) var(--spacing-md);
   min-width: 100px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  outline: none;
 }
 
-.typeSelect:focus {
-  border-color: var(--accent-border);
+.typeSelect button {
+  border-color: var(--border);
+  background: var(--bg-card);
+  height: 100%;
 }
 
 /* ── Actions ─────────────────────────────────────── */

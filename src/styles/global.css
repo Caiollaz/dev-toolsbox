@@ -88,7 +88,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--border-light);
 }
 
 /* Selection */

@@ -43,7 +43,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 0 12px 0 16px;
+  padding: 0 0 0 16px;
   background: var(--accent);
   color: var(--bg-primary);
   font-family: var(--font-mono);
@@ -54,35 +54,28 @@
   height: 38px;
 }
 
-.dbTypeSelect {
-  appearance: none;
-  -webkit-appearance: none;
+.dbTypeDropdown button {
   background: transparent;
   border: none;
   color: var(--bg-primary);
-  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
-  cursor: pointer;
-  outline: none;
-  padding: 0 16px 0 0;
+  padding: 0 12px 0 0;
+  height: 100%;
 }
 
-.dbTypeSelect option {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 11px;
+.dbTypeDropdown button:hover {
+  border: none;
 }
 
-.dbTypeSelect:disabled {
+.dbTypeDropdown svg {
+  color: var(--bg-primary);
+  opacity: 0.7;
+}
+
+.dbTypeDropdown [class*="disabled"] button {
   opacity: 0.7;
   cursor: not-allowed;
-}
-
-.dbTypeChevron {
-  pointer-events: none;
-  margin-left: -12px;
 }
 
 .connectionFields {

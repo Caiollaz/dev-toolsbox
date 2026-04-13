@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Globe, Loader2, Copy } from 'lucide-react';
+import { Dropdown } from '../shared/dropdown';
 import { dnsResolve, isTauriEnvironment, RECORD_TYPES } from '../../services/dns-lookup.service';
 import type { DnsRecord, RecordType } from '../../services/dns-lookup.service';
 import { useClipboard } from '../../hooks/use-clipboard';
@@ -70,15 +71,13 @@ export function DnsLookupTool() {
           placeholder="github.com"
           onKeyDown={(e) => { if (e.key === 'Enter') handleResolve(); }}
         />
-        <select
-          className={styles.typeSelect}
+        <Dropdown
+          options={RECORD_TYPES.map((t) => ({ value: t, label: t }))}
           value={recordType}
-          onChange={(e) => setRecordType(e.target.value as RecordType)}
-        >
-          {RECORD_TYPES.map((t) => (
-            <option key={t} value={t}>{t}</option>
-          ))}
-        </select>
+          onChange={(val) => setRecordType(val as RecordType)}
+          className={styles.typeSelect}
+          minWidth={100}
+        />
       </div>
 
       {/* Actions */}
