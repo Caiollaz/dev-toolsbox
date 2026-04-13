@@ -27,6 +27,8 @@ import {
   Container,
   FileText,
   Cylinder,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import styles from './sidebar.module.css';
@@ -61,9 +63,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
 interface SidebarProps {
   activeTool: ToolType;
   onToolSelect: (tool: ToolType) => void;
+  sidebarCollapsed: boolean;
+  onToggleSidebar: () => void;
 }
 
-export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
+export function Sidebar({ activeTool, onToolSelect, sidebarCollapsed, onToggleSidebar }: SidebarProps) {
   const activeGroup = TOOLS.find((t) => t.id === activeTool)?.group;
 
   const [collapsed, setCollapsed] = useState<Set<string>>(() => {
@@ -100,7 +104,7 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
   };
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${sidebarCollapsed ? styles.sidebarCollapsed : ''}`}>
       <div className={styles.top}>
         {/* Logo */}
         <div className={styles.logo}>
@@ -110,7 +114,7 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
               <path d="M8560 7826 c574 -82 1081 -339 1482 -752 255 -263 438 -552 568 -899 179 -477 213 -1026 93 -1530 -110 -465 -356 -906 -703 -1255 -437 -442 -941 -694 -1570 -786 -93 -14 -219 -18 -668 -21 l-553 -5 36 64 c69 120 143 284 179 396 47 146 61 210 80 355 18 136 38 187 96 251 70 76 112 86 353 86 306 0 486 30 705 116 366 142 650 402 822 749 121 246 166 452 157 720 -8 238 -44 392 -138 594 -178 379 -508 667 -900 785 -155 47 -233 58 -474 65 -218 6 -233 8 -285 32 -74 35 -110 67 -144 130 -25 46 -30 67 -37 176 -17 267 -57 418 -165 635 -30 59 -54 110 -54 114 0 3 226 4 503 1 394 -3 527 -8 617 -21z"/>
             </g>
           </svg>
-          <span className={styles.logoText}>DEXT</span>
+          {!sidebarCollapsed && <span className={styles.logoText}>DEXT</span>}
         </div>
 
         {/* Grouped Navigation */}
@@ -121,16 +125,29 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
 
             return (
               <div key={group.id} className={styles.navGroup}>
-                <button
-                  className={styles.navGroupHeader}
-                  onClick={() => toggleGroup(group.id)}
-                >
-                  <span className={styles.navGroupLabel}>{group.label}</span>
-                  <ChevronDown
-                    size={12}
-                    className={`${styles.navGroupChevron} ${isCollapsed ? styles.navGroupChevronCollapsed : ''}`}
-                  />
-                </button>
+                {sidebarCollapsed ? (
+                  <button
+                    className={styles.navGroupDivider}
+                    onClick={() => toggleGroup(group.id)}
+                    title={group.label}
+                  >
+                    <ChevronDown
+                      size={10}
+                      className={`${styles.navGroupChevronMini} ${isCollapsed ? styles.navGroupChevronCollapsed : ''}`}
+                    />
+                  </button>
+                ) : (
+                  <button
+                    className={styles.navGroupHeader}
+                    onClick={() => toggleGroup(group.id)}
+                  >
+                    <span className={styles.navGroupLabel}>{group.label}</span>
+                    <ChevronDown
+                      size={12}
+                      className={`${styles.navGroupChevron} ${isCollapsed ? styles.navGroupChevronCollapsed : ''}`}
+                    />
+                  </button>
+                )}
 
                 {!isCollapsed && (
                   <div className={styles.navGroupItems}>
@@ -141,11 +158,14 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
                           key={tool.id}
                           className={`${styles.navItem} ${activeTool === tool.id ? styles.navItemActive : ''}`}
                           onClick={() => onToolSelect(tool.id)}
+                          title={sidebarCollapsed ? tool.label : undefined}
                         >
                           <span className={styles.navIcon}>
                             {IconComponent ? <IconComponent size={16} /> : tool.icon}
                           </span>
-                          <span className={styles.navText}>{tool.label}</span>
+                          {!sidebarCollapsed && (
+                            <span className={styles.navText}>{tool.label}</span>
+                          )}
                         </button>
                       );
                     })}
@@ -158,13 +178,22 @@ export function Sidebar({ activeTool, onToolSelect }: SidebarProps) {
       </div>
 
       <div className={styles.bottom}>
-        <div className={styles.localMode}>
-          <span className={styles.sectionLabel}>// LOCAL_MODE</span>
-          <p className={styles.localDesc}>
-            No external backend. All data stays on your machine.
-          </p>
-          <span className={styles.version}>v{__APP_VERSION__}</span>
-        </div>
+        {!sidebarCollapsed && (
+          <div className={styles.localMode}>
+            <span className={styles.sectionLabel}>// LOCAL_MODE</span>
+            <p className={styles.localDesc}>
+              No external backend. All data stays on your machine.
+            </p>
+            <span className={styles.version}>v{__APP_VERSION__}</span>
+          </div>
+        )}
+        <button
+          className={styles.collapseBtn}
+          onClick={onToggleSidebar}
+          title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {sidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+        </button>
       </div>
     </aside>
   );

@@ -30,6 +30,7 @@ import styles from './layout.module.css';
 
 export function Layout() {
   const [activeTool, setActiveTool] = useState<ToolType>('base64');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const renderTool = () => {
     switch (activeTool) {
@@ -86,7 +87,12 @@ export function Layout() {
 
   return (
     <div className={styles.layout}>
-      <Sidebar activeTool={activeTool} onToolSelect={setActiveTool} />
+      <Sidebar
+        activeTool={activeTool}
+        onToolSelect={setActiveTool}
+        sidebarCollapsed={sidebarCollapsed}
+        onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
       <main className={styles.content}>
         <ToolContainer tool={activeTool}>{renderTool()}</ToolContainer>
       </main>

@@ -1,18 +1,12 @@
+use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 use serde::{Deserialize, Serialize};
-use sqlx::any::AnyRow;
-use sqlx::{AnyPool, Column, Row, TypeInfo, ValueRef};
+use sqlx::mysql::{MySqlPool, MySqlRow};
+use sqlx::postgres::{PgPool, PgRow};
+use sqlx::sqlite::{SqlitePool, SqliteRow};
+use sqlx::{Column, Row, TypeInfo, ValueRef};
 use std::collections::HashMap;
-use std::sync::Once;
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 use tokio::sync::Mutex;
-
-static INIT_DRIVERS: Once = Once::new();
-
-fn ensure_drivers_installed() {
-    INIT_DRIVERS.call_once(|| {
-        sqlx::any::install_default_drivers();
-    });
-}
 
 // --- Types ---
 
@@ -51,10 +45,38 @@ pub struct DbColumnInfo {
     pub default_value: Option<String>,
 }
 
+// --- Pool enum ---
+
+enum DbPool {
+    Postgres(PgPool),
+    MySql(MySqlPool),
+    Sqlite(SqlitePool),
+}
+
+impl DbPool {
+    async fn close(&self) {
+        match self {
+            DbPool::Postgres(p) => p.close().await,
+            DbPool::MySql(p) => p.close().await,
+            DbPool::Sqlite(p) => p.close().await,
+        }
+    }
+}
+
+impl Clone for DbPool {
+    fn clone(&self) -> Self {
+        match self {
+            DbPool::Postgres(p) => DbPool::Postgres(p.clone()),
+            DbPool::MySql(p) => DbPool::MySql(p.clone()),
+            DbPool::Sqlite(p) => DbPool::Sqlite(p.clone()),
+        }
+    }
+}
+
 // --- State ---
 
 struct DbConnection {
-    pool: AnyPool,
+    pool: DbPool,
     db_type: String,
 }
 
@@ -64,7 +86,6 @@ pub struct DbState {
 
 impl DbState {
     pub fn new() -> Self {
-        ensure_drivers_installed();
         Self {
             connections: Mutex::new(HashMap::new()),
         }
@@ -111,6 +132,31 @@ fn build_url(config: &DbConfig) -> Result<String, String> {
     }
 }
 
+async fn connect_pool(config: &DbConfig) -> Result<DbPool, String> {
+    let url = build_url(config)?;
+    match config.db_type.as_str() {
+        "postgresql" => {
+            let pool = PgPool::connect(&url)
+                .await
+                .map_err(|e| format!("Connection failed: {}", e))?;
+            Ok(DbPool::Postgres(pool))
+        }
+        "mysql" => {
+            let pool = MySqlPool::connect(&url)
+                .await
+                .map_err(|e| format!("Connection failed: {}", e))?;
+            Ok(DbPool::MySql(pool))
+        }
+        "sqlite" => {
+            let pool = SqlitePool::connect(&url)
+                .await
+                .map_err(|e| format!("Connection failed: {}", e))?;
+            Ok(DbPool::Sqlite(pool))
+        }
+        other => Err(format!("Unsupported database type: {}", other)),
+    }
+}
+
 fn generate_id() -> String {
     let ts = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -119,7 +165,9 @@ fn generate_id() -> String {
     format!("conn_{}", ts)
 }
 
-fn extract_value(row: &AnyRow, i: usize) -> Option<String> {
+// --- Value extraction (database-specific) ---
+
+fn extract_pg_value(row: &PgRow, i: usize) -> Option<String> {
     if let Ok(raw) = row.try_get_raw(i) {
         if raw.is_null() {
             return None;
@@ -136,62 +184,155 @@ fn extract_value(row: &AnyRow, i: usize) -> Option<String> {
         .or_else(|| row.try_get::<f64, _>(i).ok().map(|v| v.to_string()))
         .or_else(|| row.try_get::<f32, _>(i).ok().map(|v| v.to_string()))
         .or_else(|| row.try_get::<bool, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveDateTime, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveDate, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveTime, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<serde_json::Value, _>(i).ok().map(|v| v.to_string()))
         .or_else(|| {
             row.try_get::<Vec<u8>, _>(i)
                 .ok()
                 .map(|v| format!("0x{}", v.iter().map(|b| format!("{:02x}", b)).collect::<String>()))
         })
+        .or_else(|| {
+            // Fallback: report type name
+            let type_name = row.columns().get(i).map(|c| c.type_info().name().to_string()).unwrap_or_default();
+            Some(format!("<{}>", type_name))
+        })
 }
 
-fn rows_to_result(rows: Vec<AnyRow>, elapsed_ms: u64) -> DbQueryResult {
+fn extract_mysql_value(row: &MySqlRow, i: usize) -> Option<String> {
+    if let Ok(raw) = row.try_get_raw(i) {
+        if raw.is_null() {
+            return None;
+        }
+    } else {
+        return None;
+    }
+
+    row.try_get::<String, _>(i)
+        .ok()
+        .or_else(|| row.try_get::<i64, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<i32, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<i16, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<i8, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<u64, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<u32, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<u16, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<u8, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<f64, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<f32, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<bool, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveDateTime, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveDate, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<NaiveTime, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<serde_json::Value, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| {
+            row.try_get::<Vec<u8>, _>(i)
+                .ok()
+                .map(|v| format!("0x{}", v.iter().map(|b| format!("{:02x}", b)).collect::<String>()))
+        })
+        .or_else(|| {
+            let type_name = row.columns().get(i).map(|c| c.type_info().name().to_string()).unwrap_or_default();
+            Some(format!("<{}>", type_name))
+        })
+}
+
+fn extract_sqlite_value(row: &SqliteRow, i: usize) -> Option<String> {
+    if let Ok(raw) = row.try_get_raw(i) {
+        if raw.is_null() {
+            return None;
+        }
+    } else {
+        return None;
+    }
+
+    row.try_get::<String, _>(i)
+        .ok()
+        .or_else(|| row.try_get::<i64, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<i32, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<f64, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| row.try_get::<bool, _>(i).ok().map(|v| v.to_string()))
+        .or_else(|| {
+            row.try_get::<Vec<u8>, _>(i)
+                .ok()
+                .map(|v| format!("0x{}", v.iter().map(|b| format!("{:02x}", b)).collect::<String>()))
+        })
+        .or_else(|| {
+            let type_name = row.columns().get(i).map(|c| c.type_info().name().to_string()).unwrap_or_default();
+            Some(format!("<{}>", type_name))
+        })
+}
+
+// --- Rows to result (database-specific) ---
+
+fn pg_rows_to_result(rows: Vec<PgRow>, elapsed_ms: u64) -> DbQueryResult {
     let columns: Vec<String> = if !rows.is_empty() {
         rows[0].columns().iter().map(|c| c.name().to_string()).collect()
     } else {
         Vec::new()
     };
-
     let column_types: Vec<String> = if !rows.is_empty() {
-        rows[0]
-            .columns()
-            .iter()
-            .map(|c| c.type_info().name().to_string())
-            .collect()
+        rows[0].columns().iter().map(|c| c.type_info().name().to_string()).collect()
     } else {
         Vec::new()
     };
-
     let row_count = rows.len();
     let data: Vec<Vec<Option<String>>> = rows
         .iter()
         .take(1000)
-        .map(|row| {
-            (0..row.columns().len())
-                .map(|i| extract_value(row, i))
-                .collect()
-        })
+        .map(|row| (0..row.columns().len()).map(|i| extract_pg_value(row, i)).collect())
         .collect();
 
-    DbQueryResult {
-        columns,
-        column_types,
-        rows: data,
-        row_count,
-        affected_rows: 0,
-        execution_time_ms: elapsed_ms,
-    }
+    DbQueryResult { columns, column_types, rows: data, row_count, affected_rows: 0, execution_time_ms: elapsed_ms }
+}
+
+fn mysql_rows_to_result(rows: Vec<MySqlRow>, elapsed_ms: u64) -> DbQueryResult {
+    let columns: Vec<String> = if !rows.is_empty() {
+        rows[0].columns().iter().map(|c| c.name().to_string()).collect()
+    } else {
+        Vec::new()
+    };
+    let column_types: Vec<String> = if !rows.is_empty() {
+        rows[0].columns().iter().map(|c| c.type_info().name().to_string()).collect()
+    } else {
+        Vec::new()
+    };
+    let row_count = rows.len();
+    let data: Vec<Vec<Option<String>>> = rows
+        .iter()
+        .take(1000)
+        .map(|row| (0..row.columns().len()).map(|i| extract_mysql_value(row, i)).collect())
+        .collect();
+
+    DbQueryResult { columns, column_types, rows: data, row_count, affected_rows: 0, execution_time_ms: elapsed_ms }
+}
+
+fn sqlite_rows_to_result(rows: Vec<SqliteRow>, elapsed_ms: u64) -> DbQueryResult {
+    let columns: Vec<String> = if !rows.is_empty() {
+        rows[0].columns().iter().map(|c| c.name().to_string()).collect()
+    } else {
+        Vec::new()
+    };
+    let column_types: Vec<String> = if !rows.is_empty() {
+        rows[0].columns().iter().map(|c| c.type_info().name().to_string()).collect()
+    } else {
+        Vec::new()
+    };
+    let row_count = rows.len();
+    let data: Vec<Vec<Option<String>>> = rows
+        .iter()
+        .take(1000)
+        .map(|row| (0..row.columns().len()).map(|i| extract_sqlite_value(row, i)).collect())
+        .collect();
+
+    DbQueryResult { columns, column_types, rows: data, row_count, affected_rows: 0, execution_time_ms: elapsed_ms }
 }
 
 // --- Commands ---
 
 #[tauri::command]
 pub async fn db_test_connection(config: DbConfig) -> Result<String, String> {
-    ensure_drivers_installed();
-    let url = build_url(&config)?;
-
-    let pool = AnyPool::connect(&url)
-        .await
-        .map_err(|e| format!("Connection failed: {}", e))?;
-
+    let pool = connect_pool(&config).await?;
     pool.close().await;
     Ok("Connection successful".to_string())
 }
@@ -201,12 +342,7 @@ pub async fn db_connect(
     config: DbConfig,
     state: tauri::State<'_, DbState>,
 ) -> Result<String, String> {
-    ensure_drivers_installed();
-    let url = build_url(&config)?;
-
-    let pool = AnyPool::connect(&url)
-        .await
-        .map_err(|e| format!("Connection failed: {}", e))?;
+    let pool = connect_pool(&config).await?;
 
     let id = generate_id();
     let mut conns = state.connections.lock().await;
@@ -240,37 +376,73 @@ pub async fn db_execute_query(
     query: String,
     state: tauri::State<'_, DbState>,
 ) -> Result<DbQueryResult, String> {
-    let pool = {
+    let (pool, _db_type) = {
         let conns = state.connections.lock().await;
-        conns
-            .get(&connection_id)
-            .map(|c| c.pool.clone())
-            .ok_or("Connection not found".to_string())?
+        let conn = conns.get(&connection_id).ok_or("Connection not found".to_string())?;
+        (conn.pool.clone(), conn.db_type.clone())
     };
 
     let start = Instant::now();
 
-    // Try fetch (SELECT-like queries)
-    match sqlx::query(&query).fetch_all(&pool).await {
-        Ok(rows) => {
-            let elapsed = start.elapsed().as_millis() as u64;
-            Ok(rows_to_result(rows, elapsed))
-        }
-        Err(fetch_err) => {
-            // Try execute (INSERT, UPDATE, DELETE, DDL)
-            match sqlx::query(&query).execute(&pool).await {
-                Ok(result) => {
+    match pool {
+        DbPool::Postgres(ref p) => {
+            match sqlx::query(&query).fetch_all(p).await {
+                Ok(rows) => {
                     let elapsed = start.elapsed().as_millis() as u64;
-                    Ok(DbQueryResult {
-                        columns: Vec::new(),
-                        column_types: Vec::new(),
-                        rows: Vec::new(),
-                        row_count: 0,
-                        affected_rows: result.rows_affected(),
-                        execution_time_ms: elapsed,
-                    })
+                    Ok(pg_rows_to_result(rows, elapsed))
                 }
-                Err(_) => Err(format!("Query failed: {}", fetch_err)),
+                Err(fetch_err) => {
+                    match sqlx::query(&query).execute(p).await {
+                        Ok(result) => {
+                            let elapsed = start.elapsed().as_millis() as u64;
+                            Ok(DbQueryResult {
+                                columns: Vec::new(), column_types: Vec::new(), rows: Vec::new(),
+                                row_count: 0, affected_rows: result.rows_affected(), execution_time_ms: elapsed,
+                            })
+                        }
+                        Err(_) => Err(format!("Query failed: {}", fetch_err)),
+                    }
+                }
+            }
+        }
+        DbPool::MySql(ref p) => {
+            match sqlx::query(&query).fetch_all(p).await {
+                Ok(rows) => {
+                    let elapsed = start.elapsed().as_millis() as u64;
+                    Ok(mysql_rows_to_result(rows, elapsed))
+                }
+                Err(fetch_err) => {
+                    match sqlx::query(&query).execute(p).await {
+                        Ok(result) => {
+                            let elapsed = start.elapsed().as_millis() as u64;
+                            Ok(DbQueryResult {
+                                columns: Vec::new(), column_types: Vec::new(), rows: Vec::new(),
+                                row_count: 0, affected_rows: result.rows_affected(), execution_time_ms: elapsed,
+                            })
+                        }
+                        Err(_) => Err(format!("Query failed: {}", fetch_err)),
+                    }
+                }
+            }
+        }
+        DbPool::Sqlite(ref p) => {
+            match sqlx::query(&query).fetch_all(p).await {
+                Ok(rows) => {
+                    let elapsed = start.elapsed().as_millis() as u64;
+                    Ok(sqlite_rows_to_result(rows, elapsed))
+                }
+                Err(fetch_err) => {
+                    match sqlx::query(&query).execute(p).await {
+                        Ok(result) => {
+                            let elapsed = start.elapsed().as_millis() as u64;
+                            Ok(DbQueryResult {
+                                columns: Vec::new(), column_types: Vec::new(), rows: Vec::new(),
+                                row_count: 0, affected_rows: result.rows_affected(), execution_time_ms: elapsed,
+                            })
+                        }
+                        Err(_) => Err(format!("Query failed: {}", fetch_err)),
+                    }
+                }
             }
         }
     }
@@ -288,23 +460,29 @@ pub async fn db_list_databases(
     };
 
     let query = match db_type.as_str() {
-        "postgresql" => {
-            "SELECT datname FROM pg_database WHERE datistemplate = false ORDER BY datname"
-        }
+        "postgresql" => "SELECT datname FROM pg_database WHERE datistemplate = false ORDER BY datname",
         "mysql" => "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA ORDER BY SCHEMA_NAME",
         "sqlite" => "SELECT 'main' AS name",
         _ => return Err("Unsupported database type".to_string()),
     };
 
-    let rows = sqlx::query(query)
-        .fetch_all(&pool)
-        .await
-        .map_err(|e| format!("Failed to list databases: {}", e))?;
-
-    let names: Vec<String> = rows
-        .iter()
-        .filter_map(|row: &AnyRow| row.try_get::<String, _>(0).ok())
-        .collect();
+    let names = match pool {
+        DbPool::Postgres(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list databases: {}", e))?;
+            rows.iter().filter_map(|r: &PgRow| r.try_get::<String, _>(0).ok()).collect()
+        }
+        DbPool::MySql(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list databases: {}", e))?;
+            rows.iter().filter_map(|r: &MySqlRow| r.try_get::<String, _>(0).ok()).collect()
+        }
+        DbPool::Sqlite(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list databases: {}", e))?;
+            rows.iter().filter_map(|r: &SqliteRow| r.try_get::<String, _>(0).ok()).collect()
+        }
+    };
 
     Ok(names)
 }
@@ -337,18 +515,32 @@ pub async fn db_list_tables(
         _ => return Err("Unsupported database type".to_string()),
     };
 
-    let rows = sqlx::query(query)
-        .fetch_all(&pool)
-        .await
-        .map_err(|e| format!("Failed to list tables: {}", e))?;
-
-    let tables: Vec<DbTableInfo> = rows
-        .iter()
-        .map(|row: &AnyRow| DbTableInfo {
-            name: row.try_get::<String, _>(0).unwrap_or_default(),
-            table_type: row.try_get::<String, _>(1).unwrap_or_default(),
-        })
-        .collect();
+    let tables = match pool {
+        DbPool::Postgres(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list tables: {}", e))?;
+            rows.iter().map(|r: &PgRow| DbTableInfo {
+                name: r.try_get::<String, usize>(0).unwrap_or_default(),
+                table_type: r.try_get::<String, usize>(1).unwrap_or_default(),
+            }).collect()
+        }
+        DbPool::MySql(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list tables: {}", e))?;
+            rows.iter().map(|r: &MySqlRow| DbTableInfo {
+                name: r.try_get::<String, usize>(0).unwrap_or_default(),
+                table_type: r.try_get::<String, usize>(1).unwrap_or_default(),
+            }).collect()
+        }
+        DbPool::Sqlite(ref p) => {
+            let rows = sqlx::query(query).fetch_all(p).await
+                .map_err(|e| format!("Failed to list tables: {}", e))?;
+            rows.iter().map(|r: &SqliteRow| DbTableInfo {
+                name: r.try_get::<String, usize>(0).unwrap_or_default(),
+                table_type: r.try_get::<String, usize>(1).unwrap_or_default(),
+            }).collect()
+        }
+    };
 
     Ok(tables)
 }
@@ -373,7 +565,11 @@ pub async fn db_describe_table(
     }
 }
 
-async fn describe_pg(pool: &AnyPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
+async fn describe_pg(pool: &DbPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
+    let DbPool::Postgres(ref p) = pool else {
+        return Err("Expected PostgreSQL pool".to_string());
+    };
+
     let query = r#"
         SELECT
             c.column_name,
@@ -398,29 +594,27 @@ async fn describe_pg(pool: &AnyPool, table: &str) -> Result<Vec<DbColumnInfo>, S
 
     let rows = sqlx::query(query)
         .bind(table)
-        .fetch_all(pool)
+        .fetch_all(p)
         .await
         .map_err(|e| format!("Failed to describe table: {}", e))?;
 
     Ok(rows
         .iter()
-        .map(|row: &AnyRow| DbColumnInfo {
+        .map(|row: &PgRow| DbColumnInfo {
             name: row.try_get::<String, _>(0).unwrap_or_default(),
             data_type: row.try_get::<String, _>(1).unwrap_or_default(),
-            is_nullable: row
-                .try_get::<String, _>(2)
-                .unwrap_or_default()
-                == "YES",
+            is_nullable: row.try_get::<String, _>(2).unwrap_or_default() == "YES",
             default_value: row.try_get::<String, _>(3).ok(),
-            is_primary_key: row
-                .try_get::<String, _>(4)
-                .unwrap_or_default()
-                == "YES",
+            is_primary_key: row.try_get::<String, _>(4).unwrap_or_default() == "YES",
         })
         .collect())
 }
 
-async fn describe_mysql(pool: &AnyPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
+async fn describe_mysql(pool: &DbPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
+    let DbPool::MySql(ref p) = pool else {
+        return Err("Expected MySQL pool".to_string());
+    };
+
     let query = r#"
         SELECT
             COLUMN_NAME,
@@ -435,41 +629,38 @@ async fn describe_mysql(pool: &AnyPool, table: &str) -> Result<Vec<DbColumnInfo>
 
     let rows = sqlx::query(query)
         .bind(table)
-        .fetch_all(pool)
+        .fetch_all(p)
         .await
         .map_err(|e| format!("Failed to describe table: {}", e))?;
 
     Ok(rows
         .iter()
-        .map(|row: &AnyRow| DbColumnInfo {
+        .map(|row: &MySqlRow| DbColumnInfo {
             name: row.try_get::<String, _>(0).unwrap_or_default(),
             data_type: row.try_get::<String, _>(1).unwrap_or_default(),
-            is_nullable: row
-                .try_get::<String, _>(2)
-                .unwrap_or_default()
-                == "YES",
+            is_nullable: row.try_get::<String, _>(2).unwrap_or_default() == "YES",
             default_value: row.try_get::<String, _>(3).ok(),
-            is_primary_key: row
-                .try_get::<String, _>(4)
-                .unwrap_or_default()
-                == "PRI",
+            is_primary_key: row.try_get::<String, _>(4).unwrap_or_default() == "PRI",
         })
         .collect())
 }
 
-async fn describe_sqlite(pool: &AnyPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
-    // SQLite doesn't support parameterized PRAGMA, use safe string formatting
+async fn describe_sqlite(pool: &DbPool, table: &str) -> Result<Vec<DbColumnInfo>, String> {
+    let DbPool::Sqlite(ref p) = pool else {
+        return Err("Expected SQLite pool".to_string());
+    };
+
     let safe_name: String = table.chars().filter(|c| c.is_alphanumeric() || *c == '_').collect();
     let query = format!("PRAGMA table_info({})", safe_name);
 
     let rows = sqlx::query(&query)
-        .fetch_all(pool)
+        .fetch_all(p)
         .await
         .map_err(|e| format!("Failed to describe table: {}", e))?;
 
     Ok(rows
         .iter()
-        .map(|row: &AnyRow| {
+        .map(|row: &SqliteRow| {
             let pk_val = row.try_get::<i32, _>(5).unwrap_or(0);
             DbColumnInfo {
                 name: row.try_get::<String, _>(1).unwrap_or_default(),
